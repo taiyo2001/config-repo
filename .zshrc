@@ -26,12 +26,11 @@ setopt prompt_subst
 
 
 # Enable iTerm2 shell integration
-test -e /Users/${UserName}/.iterm2_shell_integration.zsh && source /Users/${UserName}/.iterm2_shell_integration.zsh || true
+test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
 
 
 # Prompt configuration
 export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
-
 
 # Aliases
 alias cat='bat'
