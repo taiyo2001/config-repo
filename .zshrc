@@ -32,6 +32,7 @@ test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integr
 # Prompt configuration
 export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
 
+
 # Aliases
 alias cat='bat'
 alias ll='exa --icons --git -h -g -al --group-directories-first'
