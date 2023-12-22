@@ -1,0 +1,11 @@
+[user]
+	name = taiyo2001
+	email = ${Email}
+[color]
+	ui = true
+[core]
+	editor = vim
+	autocrlf = input
+[alias]
+	graph = log --oneline --graph --decorate --all
+	co = checkout
