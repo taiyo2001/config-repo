@@ -10,3 +10,4 @@
 	graph = log --oneline --graph --decorate --all
 	co = checkout
 	stash = stash -u
+	diffw = diff --word-diff
