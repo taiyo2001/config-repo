@@ -22,8 +22,8 @@ setopt prompt_subst
 
 
 # Load asdf (a version manager)
-. /usr/local/opt/asdf/libexec/asdf.sh
-
+# . /usr/local/opt/asdf/libexec/asdf.sh intel Mac
+. "$HOME/.asdf/asdf.sh" # Git Install & Apple Silicon Mac
 
 # Enable iTerm2 shell integration
 test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
