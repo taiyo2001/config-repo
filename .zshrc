@@ -1,8 +1,8 @@
 # Git
 # Load git-prompt, git-completion
-source ~/.zsh/git-prompt.sh
+source ~/.git-prompt.sh
 fpath=(~/.zsh $fpath)
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
 autoload -Uz compinit && compinit
 
 # Function to get Git branch information
