@@ -9,6 +9,11 @@ https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081
 brew install shellcheck shfmt
 ```
 
+> [!IMPORTANT]
+> ホーム直下でクローンすること
+
+sh link
+
 ### ENV
 各環境別に以下の変数を変更
 
@@ -16,9 +21,17 @@ brew install shellcheck shfmt
 * ${Email}
 
 ### Dotfiles
-インタラクティブに Dotfiles を $HOME ディレクトリに移動
+<!-- インタラクティブに Dotfiles を $HOME ディレクトリに移動 -->
+<!-- sh cp_files.sh -->
+
 ```sh
-sh setup.sh
+sh link_dotfiles.sh
+```
+
+## 動作確認用のDocker環境
+```
+make docker/setup
+make docker/zsh
 ```
 
 ## Format
