@@ -1,3 +1,7 @@
+setup:
+	sh move_home.sh
+	sh link_dotfiles.sh
+
 format/fix:
 	shfmt -i 2 -ci -sr -w .
 

@@ -4,13 +4,13 @@ Qiitaの記事を参考に環境をセットアップ.
 https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081
 
 ## SetUp
-### Install(Mac)
-```
-brew install shellcheck shfmt
-```
-
 > [!IMPORTANT]
 > ホーム直下でクローンすること
+
+### Install(Mac)
+```
+brew install shellcheck shfmt make gcc
+```
 
 ### ENV
 各環境別に以下の変数を変更
@@ -20,10 +20,10 @@ brew install shellcheck shfmt
 
 ### Dotfiles
 <!-- インタラクティブに Dotfiles を $HOME ディレクトリに移動 -->
-<!-- sh cp_files.sh -->
 
 ```sh
-sh link_dotfiles.sh
+make setup
+source $file_name
 ```
 
 ## 動作確認用のDocker環境
