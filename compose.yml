@@ -1,0 +1,5 @@
+services:
+  zsh-alias:
+    build: .
+    container_name: config-repo-container
+    tty: true
