@@ -3,8 +3,8 @@
 TEMP_DIR="config-repo"
 TARGET_DIR="$HOME"
 
-# dotfiles ディレクトリ内のファイルを取得 XXX: ディレクトリは未対応
-find "dotfiles" -type f | while read file; do
+# dotfiles/home ディレクトリ内のファイルを取得 XXX: ディレクトリは未対応
+find "dotfiles/home/" -type f | while read file; do
   filename=$(basename "$file")
 
   if [ -e "$TARGET_DIR/$filename" ]; then
@@ -13,7 +13,7 @@ find "dotfiles" -type f | while read file; do
 
       case "$choice" in
         y | Y)
-          mv -f "$file" "$TARGET_DIR"
+          cp -f "$file" "$TARGET_DIR"
           echo "$filename を上書きしました。"
           break
           ;;
@@ -32,12 +32,9 @@ find "dotfiles" -type f | while read file; do
       esac
     done
   else
-    mv "$file" "$TARGET_DIR"
-    echo "$filename に移動しました。"
+    cp "$file" "$TARGET_DIR"
+    echo "$filename を複製しました。"
   fi
 done
 
-echo "ファイルが $TARGET_DIR に移動されました。\n"
-echo "クローンを削除するには以下の実行してください。\n"
-echo "$ cd .."
-echo "$ rm -r "$TEMP_DIR"\n"
+echo "ファイルが $TARGET_DIR に複製されました。\n"
