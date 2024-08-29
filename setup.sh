@@ -12,21 +12,21 @@ find "dotfiles" -type f | while read file; do
       read -p "ファイル $filename が $TARGET_DIR に既に存在します。上書きしますか？ (y/n/v[内容を表示]): " choice < /dev/tty
 
       case "$choice" in
-        y|Y )
+        y | Y)
           mv -f "$file" "$TARGET_DIR"
           echo "$filename を上書きしました。"
           break
           ;;
-        n|N )
+        n | N)
           echo "$filename をスキップしました。"
           break
           ;;
-        v|V )
+        v | V)
           echo "$filename の内容を表示します\n(exec cat "$TARGET_DIR/$filename"):\n"
           cat "$TARGET_DIR/$filename"
           echo "\n内容の表示が終了しました。再度選択してください。"
           ;;
-        * )
+        *)
           echo "無効な選択肢です。y, n, または v を入力してください。"
           ;;
       esac
