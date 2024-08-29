@@ -16,7 +16,7 @@ jobs:
 
       - name: Verify Shell Script Formatting
         run: |
-          DIFF=$(make format/check)
+          DIFF=$(shfmt -i 2 -ci -sr -d .)
           if [ -n "$DIFF" ]; then
             echo "Shell script formatting issues found:"
             echo "$DIFF"
