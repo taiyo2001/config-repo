@@ -1,0 +1,28 @@
+name: Check Shell Script Formatting
+on:
+  push:
+
+jobs:
+  check-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install shfmt
+        run: |
+          sudo apt-get install -y golang
+          go install mvdan.cc/sh/v3/cmd/shfmt@latest
+          echo "${HOME}/go/bin" >> $GITHUB_PATH
+
+      - name: Verify Shell Script Formatting
+        run: |
+          DIFF=$(make format/check)
+          if [ -n "$DIFF" ]; then
+            echo "Shell script formatting issues found:"
+            echo "$DIFF"
+            exit 1
+          else
+            echo "No formatting issues found."
+          fi
