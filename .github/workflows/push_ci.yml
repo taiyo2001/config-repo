@@ -12,9 +12,7 @@ jobs:
 
       - name: Install shfmt
         run: |
-          sudo apt-get install -y golang
-          go install mvdan.cc/sh/v3/cmd/shfmt@latest
-          echo "${HOME}/go/bin" >> $GITHUB_PATH
+          sudo apt install -y shfmt
 
       - name: Verify Shell Script Formatting
         run: |
