@@ -3,11 +3,11 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Git
 # Load git-prompt, git-completion
-# source ~/.zsh/git-prompt.sh
-source $SCRIPT_DIR/.zsh/git-prompt.sh
+# source ~/.zsh/.git-prompt.sh
+source $SCRIPT_DIR/.zsh/.git-prompt.sh
 fpath=($SCRIPT_DIR/.zsh $fpath)
-# zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-zstyle ':completion:*:*:git:*' script $SCRIPT_DIR/.zsh/git-completion.bash
+# zstyle ':completion:*:*:git:*' script ~/.zsh/.git-completion.bash
+zstyle ':completion:*:*:git:*' script $SCRIPT_DIR/.zsh/.git-completion.bash
 
 autoload -Uz compinit && compinit
 

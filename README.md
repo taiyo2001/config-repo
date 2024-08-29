@@ -12,8 +12,6 @@ brew install shellcheck shfmt
 > [!IMPORTANT]
 > ホーム直下でクローンすること
 
-sh link
-
 ### ENV
 各環境別に以下の変数を変更
 
