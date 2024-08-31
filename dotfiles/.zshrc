@@ -53,6 +53,7 @@ export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
 alias cat='bat'
 # alias ll='exa --icons --git -h -g -al --group-directories-first'
 alias ll='eza -aahl --icons --git'
+alias tm='tmux'
 
 alias cp='cp -i'
 alias mv='mv -i'
