@@ -3,8 +3,12 @@
 TEMP_DIR="config-repo"
 TARGET_DIR="$HOME"
 
+# exec source colors.sh script
+FILE_PATH="$HOME/$TEMP_DIR/utils/colors.sh"
+source $FILE_PATH
+
 # dotfiles/home ディレクトリ内のファイルを取得 XXX: ディレクトリは未対応
-find "dotfiles/home/" -type f | while read file; do
+find "dotfiles/home" -type f | while read file; do
   filename=$(basename "$file")
 
   if [ -e "$TARGET_DIR/$filename" ]; then
@@ -13,8 +17,8 @@ find "dotfiles/home/" -type f | while read file; do
 
       case "$choice" in
         y | Y)
-          cp -f "$file" "$TARGET_DIR"
-          echo "$filename を上書きしました。"
+          echo -e "\n${CYAN}[exec] cp $file $TARGET_DIR/$filename${RESET}\n"
+          cp "$file" "$TARGET_DIR/$filename"
           break
           ;;
         n | N)
@@ -32,8 +36,8 @@ find "dotfiles/home/" -type f | while read file; do
       esac
     done
   else
-    cp "$file" "$TARGET_DIR"
-    echo "$filename を複製しました。"
+    echo -e "\n${CYAN}[exec] cp $file $TARGET_DIR/$filename${RESET}\n"
+    cp $file $TARGET_DIR/$filename
   fi
 done
 

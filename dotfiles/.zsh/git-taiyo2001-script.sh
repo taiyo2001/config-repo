@@ -1,13 +1,8 @@
 #!/bin/zsh
 
-# clor code
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-MAGENTA="\e[35m"
-CYAN="\e[36m"
-WHITE="\e[37m"
-RESET="\e[0m"
+# exec source colors.sh script
+FILE_PATH="$HOME/config-repo/utils/colors.sh"
+source $FILE_PATH
 
 # Git auto update default branch
 function git_auto_update() {
