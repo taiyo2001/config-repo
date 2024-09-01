@@ -26,6 +26,10 @@ make setup
 source $file_name
 ```
 
+### 手動セットアップ項目
+手動セットアップ項目は[こちらのREADME](./manual_setup/README.md)を参照
+
+
 ## 動作確認用のDocker環境
 ```
 make docker/setup
