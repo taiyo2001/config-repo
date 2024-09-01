@@ -9,7 +9,12 @@ function git_auto_update() {
   local current_dir=$(pwd)
 
   if [ -d ".git" ]; then
-    local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+    if [ -n "$1" ]; then
+      local default_branch="$1"
+    else
+      default_branch=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
+    fi
 
     local current_branch=$(git branch --show-current)
     echo -e "\n[$current_branch] ${CYAN}[exec] git checkout $default_branch${RESET}\n"
@@ -29,7 +34,11 @@ function git_auto_update() {
 
 # Execute the function name passed as a command-line argument
 if [ -n "$1" ]; then
-  $1
+  function_name=$1
+  shift # Remove function name from the argument list
+  echo -e "\n${CYAN}[exec] $function_name $@${RESET}\n"
+
+  $function_name $@
 else
   echo -e "\n${RED}Please specify a function to run.${RESET}\n"
 fi

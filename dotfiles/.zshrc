@@ -27,6 +27,8 @@ precmd() {
 function git() {
     # Handle custom subcommands
     if [ "$1" = "auto" ]; then
+        # ex: git auto develop
+
         shift # Remove 'auto' from the argument list
         $SCRIPT_DIR/.zsh/git-taiyo2001-script.sh git_auto_update "$@"
     else
