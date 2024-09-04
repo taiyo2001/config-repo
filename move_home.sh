@@ -7,9 +7,9 @@ TARGET_DIR="$HOME"
 FILE_PATH="$HOME/$TEMP_DIR/utils/colors.sh"
 source $FILE_PATH
 
-# dotfiles/home ディレクトリ内のファイルを取得 XXX: ディレクトリは未対応
+# dotfiles/home ディレクトリ内のファイルを取得
 find "dotfiles/home" -type f | while read file; do
-  filename=$(basename "$file")
+  filename=${file#dotfiles/home/}
 
   if [ -e "$TARGET_DIR/$filename" ]; then
     while true; do
@@ -37,8 +37,13 @@ find "dotfiles/home" -type f | while read file; do
     done
   else
     echo -e "\n${CYAN}[exec] cp $file $TARGET_DIR/$filename${RESET}\n"
+
+    # If the directory does not exist, create it
+    target_dir=$(dirname "$TARGET_DIR/$filename")
+    mkdir -p "$target_dir"
+
     cp $file $TARGET_DIR/$filename
   fi
 done
 
-echo "ファイルが $TARGET_DIR に複製されました。\n"
+echo -e "ファイルが $TARGET_DIR に複製されました。\n"
