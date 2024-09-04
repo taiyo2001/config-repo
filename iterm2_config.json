@@ -1,5 +1,5 @@
 {
-  "Working Directory" : "\/Users\/${UserName}",
+  "Working Directory" : "\/Users\/$${UserName}",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
     "Green Component" : 0,

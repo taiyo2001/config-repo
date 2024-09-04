@@ -1,6 +1,6 @@
 [user]
 	name = taiyo2001
-	email = ${Email}
+	email = $${Email}
 [color]
 	ui = true
 [core]

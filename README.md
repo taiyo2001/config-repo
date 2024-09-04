@@ -13,10 +13,9 @@ brew install shellcheck shfmt make gcc
 ```
 
 ### ENV
-各環境別に以下の変数を変更
+各環境別に$${xxx}の変数を変更
 
-* ${UserName}
-* ${Email}
+ex. \$${UserName}、\$${Email}, etc.
 
 ### Dotfiles
 <!-- インタラクティブに Dotfiles を $HOME ディレクトリに移動 -->

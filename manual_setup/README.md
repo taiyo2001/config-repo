@@ -1,5 +1,11 @@
 ## 手動セットアップ項目
 
+### iTermの設定ファイルをインポート
+
+`iTerm2 State.itermexport` をインポート
+
+参考：[Qiita記事](https://qiita.com/reoring/items/a0f3d6186efd11c87f1b)
+
 ### Git関連スニペットファイルをインストール
 
 参考：[Qiita記事](https://qiita.com/Ping/items/234b8974bdf2a5e618a5)
