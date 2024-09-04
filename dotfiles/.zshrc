@@ -1,6 +1,9 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # REL_DIR="${SCRIPT_DIR/#$HOME/~}"
 
+autoload -Uz colors && colors
+zstyle ":completion:*:commands" rehash 1
+
 # Git
 # Load git-prompt, git-completion
 # source ~/.zsh/.git-prompt.sh
@@ -9,7 +12,17 @@ fpath=($SCRIPT_DIR/.zsh $fpath)
 # zstyle ':completion:*:*:git:*' script ~/.zsh/.git-completion.bash
 zstyle ':completion:*:*:git:*' script $SCRIPT_DIR/.zsh/.git-completion.bash
 
-autoload -Uz compinit && compinit
+# fpath=($fpath ~/.zsh/completion)
+
+# Load zsh-completions
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    autoload -Uz compinit && compinit
+fi
 
 # Function to get Git branch information
 git_prompt_info() {
@@ -40,13 +53,16 @@ function git() {
 zstyle ':vcs_info:git:*' formats '(%b)'
 setopt prompt_subst
 
+tgz() {
+    env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
+}
+
 # Load asdf (a version manager)
 # . /usr/local/opt/asdf/libexec/asdf.sh intel Mac
 . "$HOME/.asdf/asdf.sh" # Git Install & Apple Silicon Mac
 
 # Enable iTerm2 shell integration
 test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
-
 
 # Prompt configuration
 export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
@@ -60,3 +76,5 @@ alias tm='tmux'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
+
+eval "$(starship init zsh)"
