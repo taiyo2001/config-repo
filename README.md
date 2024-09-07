@@ -24,6 +24,7 @@ ex. \$${UserName}、\$${Email}, etc.
 make setup
 source $file_name
 ```
+ex. source .zshrc
 
 ### 手動セットアップ項目
 手動セットアップ項目は[こちらのREADME](./manual_setup/README.md)を参照
@@ -32,7 +33,7 @@ source $file_name
 ## 動作確認用のDocker環境
 ```
 make docker/setup
-make docker/zsh
+make docker/exec-zsh
 ```
 
 ## Format
