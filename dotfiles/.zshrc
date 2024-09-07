@@ -7,15 +7,16 @@ zstyle ":completion:*:commands" rehash 1
 # Git
 # Load git-prompt, git-completion
 # source ~/.zsh/.git-prompt.sh
-source $SCRIPT_DIR/.zsh/.git-prompt.sh
-fpath=($SCRIPT_DIR/.zsh $fpath)
+# source $SCRIPT_DIR/.zsh/.git-prompt.sh
+# fpath=($SCRIPT_DIR/.zsh $fpath)
 # zstyle ':completion:*:*:git:*' script ~/.zsh/.git-completion.bash
-zstyle ':completion:*:*:git:*' script $SCRIPT_DIR/.zsh/.git-completion.bash
+# zstyle ':completion:*:*:git:*' script $SCRIPT_DIR/.zsh/.git-completion.bash
 
 # fpath=($fpath ~/.zsh/completion)
 
 # Load zsh-completions
 if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -36,6 +37,35 @@ precmd() {
     vcs_info
 }
 
+zstyle ':vcs_info:git:*' formats '(%b)'
+setopt prompt_subst
+
+# Load asdf (a version manager)
+# . /usr/local/opt/asdf/libexec/asdf.sh intel Mac
+. "$HOME/.asdf/asdf.sh" # Git Install & Apple Silicon Mac
+
+# Enable iTerm2 shell integration
+test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
+
+# Prompt configuration
+export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
+
+export BAT_CONFIG_PATH="$HOME/bat.conf"
+
+# Aliases
+alias cat='bat'
+# alias ll='exa --icons --git -h -g -al --group-directories-first'
+alias ll='eza -aahl --icons --git'
+alias tm='tmux'
+alias finder='open -a Finder ./'
+
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
+
+# Functions
+# ================================================================
 # Custom git function
 function git() {
     # Handle custom subcommands
@@ -50,31 +80,45 @@ function git() {
     fi
 }
 
-zstyle ':vcs_info:git:*' formats '(%b)'
-setopt prompt_subst
-
 tgz() {
     env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
 }
 
-# Load asdf (a version manager)
-# . /usr/local/opt/asdf/libexec/asdf.sh intel Mac
-. "$HOME/.asdf/asdf.sh" # Git Install & Apple Silicon Mac
+# search history with peco
+peco-select-history() {
+    local cmd
+    cmd=$(\history -n -r 1 | peco --query "$LBUFFER")
+    zle accept-line
+    $cmd
+    echo "cd $dir"
+}
+zle -N peco-select-history
+bindkey '^R' peco-select-history
 
-# Enable iTerm2 shell integration
-test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
+# peco and ghq
+peco_ghq() {
+    local dir
+    dir=$(ghq list --full-path | peco)
 
-# Prompt configuration
-export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
+    if [[ -n "$dir" ]]; then
+        zle accept-line
+        cd "$dir"
+        echo "cd $dir"
+    fi
+}
 
-# Aliases
-alias cat='bat'
-# alias ll='exa --icons --git -h -g -al --group-directories-first'
-alias ll='eza -aahl --icons --git'
-alias tm='tmux'
+zle -N peco_ghq
+bindkey '^g' peco_ghq
 
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
+# Cat and pbcopy
+copy() {
+  if [ -f "$1" ]; then
+    cat "$1" && cat "$1" | pbcopy
+  else
+    echo "File not found: $1"
+  fi
+}
+# ================================================================
+
 
 eval "$(starship init zsh)"
