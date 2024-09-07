@@ -1,13 +1,34 @@
 [user]
 	name = taiyo2001
 	email = $${Email}
+
 [color]
 	ui = true
+
 [core]
 	editor = vim
 	autocrlf = input
+
+[merge]
+	conflictstyle = zdiff3
+
+[push]
+	default = current
+
+[fetch]
+	prune = true
+
 [alias]
 	graph = log --oneline --graph --decorate --all
 	co = checkout
 	stash = stash -u
 	diffw = diff --word-diff
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[ghq]
+	root = ~/workspace
