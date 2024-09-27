@@ -25,12 +25,6 @@ if type brew &>/dev/null; then
     autoload -Uz compinit && compinit
 fi
 
-# Function to get Git branch information
-git_prompt_info() {
-    ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-    echo " (${ref#refs/heads/})"
-}
-
 # Git-related settings
 autoload -Uz vcs_info
 precmd() {
@@ -40,6 +34,8 @@ precmd() {
 zstyle ':vcs_info:git:*' formats '(%b)'
 setopt prompt_subst
 
+# Load Tools
+# ================================================================
 # Load asdf (a version manager)
 # . /usr/local/opt/asdf/libexec/asdf.sh intel Mac
 . "$HOME/.asdf/asdf.sh" # Git Install & Apple Silicon Mac
@@ -47,12 +43,31 @@ setopt prompt_subst
 # Enable iTerm2 shell integration
 test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh || true
 
+# Load z.sh
+. `brew --prefix`/etc/profile.d/z.sh
+
+
+# Changing directories
+# ================================================================
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':completion:*' recent-dirs-insert always
+
+
+# Export variables
+# ================================================================
 # Prompt configuration
 export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
 
+export SAVEHIST=100000
 export BAT_CONFIG_PATH="$HOME/bat.conf"
 
+
 # Aliases
+# ================================================================
 alias cat='bat'
 # alias ll='exa --icons --git -h -g -al --group-directories-first'
 alias ll='eza -aahl --icons --git'
@@ -66,7 +81,13 @@ alias rm='rm -i'
 
 # Functions
 # ================================================================
-# Custom git function
+# function to get Git branch information
+git_prompt_info() {
+    ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+    echo " (${ref#refs/heads/})"
+}
+
+# custom git function
 function git() {
     # Handle custom subcommands
     if [ "$1" = "auto" ]; then
@@ -87,13 +108,27 @@ tgz() {
 # search history with peco
 peco-select-history() {
     local cmd
-    cmd=$(\history -n -r 1 | peco --query "$LBUFFER")
-    zle accept-line
-    $cmd
-    echo "cd $dir"
+    cmd=$(history -n -r 1 | peco --query "$LBUFFER")
+    if [[ -n $cmd ]]; then
+        LBUFFER=$cmd
+        zle reset-prompt
+        zle accept-line
+    fi
 }
 zle -N peco-select-history
 bindkey '^R' peco-select-history
+
+# seach directory with peco
+function peco-cdr() {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+    if [ -n "$selected_dir" ]; then
+        LBUFFER="cd $selected_dir"
+        zle reset-prompt
+        zle accept-line
+    fi
+}
+zle -N peco-cdr
+bindkey 'cdr' peco-cdr
 
 # peco and ghq
 peco_ghq() {
@@ -106,7 +141,6 @@ peco_ghq() {
         echo "cd $dir"
     fi
 }
-
 zle -N peco_ghq
 bindkey '^g' peco_ghq
 
