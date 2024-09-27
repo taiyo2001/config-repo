@@ -1,14 +1,14 @@
 [user]
-	name = taiyo2001
-	email = $${Email}
-	signingkey = $${SigningKey}
+	name 				= taiyo2001
+	email 			= $${Email}
+	signingkey 	= $${SigningKey}
 
 [color]
 	ui = true
 
 [core]
-	editor = vim
-	autocrlf = input
+	editor 		= vim
+	autocrlf 	= input
 
 [commit]
 	gpgsign = true
@@ -23,17 +23,18 @@
 	prune = true
 
 [alias]
-	graph = log --oneline --graph --decorate --all
-	co = checkout
-	stash = stash -u
+	graph		= log --oneline --graph --decorate --all
+	co 			= checkout
+	stash 	= stash -u
 	oneline = log --oneline -n 10
-	diffw = diff --word-diff
+	diff 		= diff --color-words
+	diffw 	= diff --word-diff
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+	clean 		= git-lfs clean -- %f
+	smudge 		= git-lfs smudge -- %f
+	process 	= git-lfs filter-process
+	required 	= true
 
 [ghq]
 	root = ~/workspace
