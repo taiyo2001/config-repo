@@ -26,6 +26,7 @@
 	graph = log --oneline --graph --decorate --all
 	co = checkout
 	stash = stash -u
+	oneline = log --oneline -n 10
 	diffw = diff --word-diff
 
 [filter "lfs"]
