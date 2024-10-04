@@ -17,13 +17,13 @@ brew install shellcheck shfmt make gcc
 
 ex. \$${UserName}、\$${Email}, etc.
 
-## SetUp
 > [!TIP]
 > 変数が存在するかの確認
 > ```sh
 > make setup/ready
 > ```
 
+## SetUp
 ### Dotfiles
 <!-- インタラクティブに Dotfiles を $HOME ディレクトリに移動 -->
 
