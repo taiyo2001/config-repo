@@ -1,6 +1,10 @@
-setup:
+setup/exec:
+	sh find_variables.sh
 	sh move_home.sh
 	sh link_dotfiles.sh
+
+setup/ready:
+	sh find_variables.sh
 
 format/fix:
 	shfmt -i 2 -ci -sr -w .
