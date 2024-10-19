@@ -118,6 +118,19 @@ tgz() {
     env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
 }
 
+# search history with fzf
+fzf-select-history() {
+    local cmd
+    cmd=$(history -n -r 1 | awk '!seen[$0]++' | fzf --query "$LBUFFER")
+    if [[ -n $cmd ]]; then
+        LBUFFER=$cmd
+        zle reset-prompt
+        zle accept-line
+    fi
+}
+zle -N fzf-select-history
+bindkey '^R' fzf-select-history
+
 # seach directory with fzf
 function fzf-cdr() {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf)
