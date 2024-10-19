@@ -14,6 +14,7 @@ zstyle ":completion:*:commands" rehash 1
 
 # fpath=($fpath ~/.zsh/completion)
 
+
 # Load Zsh Completions
 # ================================================================
 source <(kubectl completion zsh)
@@ -37,6 +38,7 @@ precmd() {
 
 zstyle ':vcs_info:git:*' formats '(%b)'
 setopt prompt_subst
+
 
 # Load Tools
 # ================================================================
@@ -69,6 +71,11 @@ export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
 export SAVEHIST=100000
 export BAT_CONFIG_PATH="$HOME/bat.conf"
 
+export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border \
+--preview-window 'right:50%' \
+--bind 'ctrl-/:change-preview-window(80%|hidden|)' \
+--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'"
+
 
 # Aliases
 # ================================================================
@@ -83,6 +90,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 alias awsume=". awsume"
+
 
 # Functions
 # ================================================================
@@ -110,35 +118,22 @@ tgz() {
     env COPYFILE_DISABLE=1 tar zcvf "$1" --exclude=".DS_Store" "${@:2}"
 }
 
-# search history with peco
-peco-select-history() {
-    local cmd
-    cmd=$(history -n -r 1 | peco --query "$LBUFFER")
-    if [[ -n $cmd ]]; then
-        LBUFFER=$cmd
-        zle reset-prompt
-        zle accept-line
-    fi
-}
-zle -N peco-select-history
-bindkey '^R' peco-select-history
-
-# seach directory with peco
-function peco-cdr() {
-    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+# seach directory with fzf
+function fzf-cdr() {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf)
     if [ -n "$selected_dir" ]; then
         LBUFFER="cd $selected_dir"
         zle reset-prompt
         zle accept-line
     fi
 }
-zle -N peco-cdr
-bindkey 'cdr' peco-cdr
+zle -N fzf-cdr
+bindkey 'cdr' fzf-cdr
 
-# peco and ghq
-peco_ghq() {
+# fzf and ghq
+fzf_ghq() {
     local dir
-    dir=$(ghq list --full-path | peco)
+    dir=$(ghq list --full-path | fzf)
 
     if [[ -n "$dir" ]]; then
         zle accept-line
@@ -146,8 +141,8 @@ peco_ghq() {
         echo "cd $dir"
     fi
 }
-zle -N peco_ghq
-bindkey '^g' peco_ghq
+zle -N fzf_ghq
+bindkey '^g' fzf_ghq
 
 # Cat and pbcopy
 copy() {
