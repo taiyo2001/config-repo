@@ -1,10 +1,10 @@
 ## 手動セットアップ項目
 
-### iTermの設定ファイルをインポート
+### アプリケーションの設定ファイルをインポート
 
-`iTerm2 State.itermexport` をインポート
+[参考：raycast](https://phys-edu.net/wp/?p=42570)
 
-参考：[Qiita記事](https://qiita.com/reoring/items/a0f3d6186efd11c87f1b)
+[参考：iTerm2](https://qiita.com/reoring/items/a0f3d6186efd11c87f1b)
 
 ### Git関連スニペットファイルをインストール
 
@@ -22,4 +22,4 @@ tmux内で以下を実行
 ```
 pfx + I
 ```
-参考：[公式ドキュメント](https://github.com/tmux-plugins/tpm)
+参考：[document](https://github.com/tmux-plugins/tpm)

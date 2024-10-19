@@ -34,6 +34,8 @@ source $file_name
 ex. source .zshrc
 
 ### 手動セットアップ項目
+`/app`のファイルを使用してimport.
+
 手動セットアップ項目は[こちらのREADME](./manual_setup/README.md)を参照
 
 
