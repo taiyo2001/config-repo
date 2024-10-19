@@ -14,6 +14,10 @@ zstyle ":completion:*:commands" rehash 1
 
 # fpath=($fpath ~/.zsh/completion)
 
+# Load Zsh Completions
+# ================================================================
+source <(kubectl completion zsh)
+
 # Load zsh-completions
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -78,6 +82,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+alias awsume=". awsume"
 
 # Functions
 # ================================================================
