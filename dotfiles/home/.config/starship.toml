@@ -13,69 +13,69 @@ $character\
 """
 
 [os]
-format = "[$symbol](bold white)"
-disabled = false
-[os.symbols]
-Macos = " "
-Ubuntu = " "
+  disabled = false
+  format   = "[$symbol](bold white)"
+  [os.symbols]
+    Macos  = " "
+    Ubuntu = " "
 
 [username]
-style_user = "white bold"
-style_root = "black bold"
-format = "[$user]($style)"
-disabled = false
-show_always = true
+  disabled    = false
+  format      = "[$user]($style)"
+  show_always = true
+  style_root  = "black bold"
+  style_user  = "white bold"
 
 [hostname]
-ssh_only = false
-style = "green bold"
-format = "[@$hostname]($style)"
+  format   = "[@$hostname]($style)"
+  ssh_only = false
+  style    = "green bold"
 
 [directory]
-# style = "bright-purple"
-# style = 'fg:#7aa2f7 bg:#1a1b26'
-style = 'fg:#7aa2f7'
-truncate_to_repo = false
-read_only = " 󰌾"
-read_only_style = "red"
-truncation_symbol = "~/"
-format = "[$path]($style)[$read_only]($read_only_style)"
+  format          = "[$path]($style)[$read_only]($read_only_style)"
+  read_only       = " 󰌾"
+  read_only_style = "red"
+  # style             = "bright-purple"
+  # style             = 'fg:#7aa2f7 bg:#1a1b26'
+  style             = 'fg:#7aa2f7'
+  truncate_to_repo  = false
+  truncation_symbol = "~/"
 
 [git_branch]
-symbol = " "
-format = "[ $symbol$branch]($style)"
+  format = "[ $symbol$branch]($style)"
+  symbol = " "
 
 [git_status]
-style = "yellow"
-conflicted = "="
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕"
-up_to_date = "✓"
-untracked = "?${count}"
-stashed = "$"
-modified = "!${count}"
-renamed = "»"
-deleted = "✘${count}"
-staged = "+${count}"
-format = '( [\[$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead$behind\]]($style))'
+  ahead      = "⇡${count}"
+  behind     = "⇣${count}"
+  conflicted = "="
+  deleted    = "✘${count}"
+  diverged   = "⇕"
+  format     = '( [\[$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead$behind\]]($style))'
+  modified   = "!${count}"
+  renamed    = "»"
+  staged     = "+${count}"
+  stashed    = "$"
+  style      = "yellow"
+  untracked  = "?${count}"
+  up_to_date = "✓"
 
-# [aws]
-# format = 'on [$symbol($profile )(\($region\) )]($style)'
-# style = "bold blue"
+  # [aws]
+  #   format = 'on [$symbol($profile )(\($region\) )]($style)'
+  #   style  = "bold blue"
 
-# [aws.region_aliases]
-# ap-northeast-1 = "jp"
+  #   [aws.region_aliases]
+  #     ap-northeast-1 = "jp"
 
-# [azure]
-# disabled = false
-# format = 'on [$symbol($subscription)]($style) '
-# symbol = '󰠅 '
-# style = 'blue bold'
+  # [azure]
+  #   disabled = false
+  #   format   = 'on [$symbol($subscription)]($style) '
+  #   style    = 'blue bold'
+  #   symbol   = '󰠅 '
 
-# [docker_context]
-# format = "[🐳 $context](blue bold)"
+  # [docker_context]
+  #   format = "[🐳 $context](blue bold)"
 
 [character]
-success_symbol = "[\\$](white)"
-error_symbol = "[✗](red)"
+  error_symbol   = "[✗](red)"
+  success_symbol = "[\\$](white)"
