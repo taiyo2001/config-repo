@@ -1,7 +1,6 @@
 # config-repo
 
-Qiitaの記事を参考に環境をセットアップ.
-https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081
+[reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081)
 
 ## SetUp
 > [!IMPORTANT]
@@ -29,14 +28,14 @@ ex. \$${UserName}、\$${Email}, etc.
 
 ```sh
 make setup/exec
+brew bundle --global
 source $file_name
 ```
 ex. source .zshrc
 
-### 手動セットアップ項目
-`/app`のファイルを使用してimport.
+### アプリケーションごとのセットアップ項目
 
-手動セットアップ項目は[こちらのREADME](./manual_setup/README.md)を参照
+[こちら](./app/README.md)を参照
 
 
 ## 動作確認用のDocker環境
