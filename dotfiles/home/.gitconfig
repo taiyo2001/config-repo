@@ -1,7 +1,7 @@
 [user]
 	name 				= taiyo2001
 	email 			= $${Email}
-	signingkey 	= $${SigningKey}
+	# signingkey 	= $${SigningKey}
 
 [color]
 	ui = true
@@ -13,8 +13,8 @@
 	ignorecase	= false
 	quotepath 	= false
 
-[commit]
-	gpgsign = true
+# [commit]
+# 	gpgsign = true
 
 [merge]
 	conflictstyle = zdiff3
