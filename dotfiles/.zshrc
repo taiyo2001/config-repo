@@ -17,7 +17,10 @@ zstyle ":completion:*:commands" rehash 1
 
 # Load Zsh Completions
 # ================================================================
+# Load kubectl completions
+# https://kubernetes.io/ja/docs/reference/kubectl/cheatsheet/#zsh
 source <(kubectl completion zsh)
+echo "[[ $commands[kubectl] ]] && source <(kubectl completion zsh)" >> ~/.zshrc
 
 # Load zsh-completions
 if type brew &>/dev/null; then
@@ -76,6 +79,7 @@ export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border \
 --bind 'ctrl-/:change-preview-window(80%|hidden|)' \
 --bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'"
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Aliases
 # ================================================================
@@ -91,6 +95,7 @@ alias rm='rm -i'
 
 alias awsume=". awsume"
 
+alias k='kubectl'
 
 # Functions
 # ================================================================
