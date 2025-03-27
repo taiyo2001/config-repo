@@ -8,6 +8,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
+$kubernetes\
 \n\
 $character\
 """
@@ -61,8 +62,8 @@ $character\
   up_to_date = "✓"
 
 [kubernetes]
-  format = 'on [⛵ $context \($namespace\)]($style) '
-  style = "bold green"
+  format = '[ 󱃾 c:$context n:$namespace]($style)'
+  style = "bold blue"
   disabled = false
 
   # [aws]
