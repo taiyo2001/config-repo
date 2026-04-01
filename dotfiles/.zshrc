@@ -55,6 +55,8 @@ test -e $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integr
 # Load z.sh
 . `brew --prefix`/etc/profile.d/z.sh
 
+# Load direnv
+eval "$(direnv hook zsh)"
 
 # Changing directories
 # ================================================================
