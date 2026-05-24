@@ -154,37 +154,6 @@
     }
   },
 
-  // Custom commands. Invoke from the Command Palette (cmd+shift+p) by typing
-  // the command name. Type "/start" or just "start" to find this entry.
-  "commands": [
-    {
-      "name": "start",
-      "description": "Open a new workspace in the current directory and launch Neovim",
-      "keywords": ["start", "nvim", "edit", "editor"],
-      "workspace": {
-        "name": "Editor",
-        "layout": {
-          "direction": "horizontal",
-          "split": 1.0,
-          "children": [
-            {
-              "pane": {
-                "surfaces": [
-                  {
-                    "type": "terminal",
-                    "name": "nvim",
-                    "command": "nvim .",
-                    "focus": true
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
-
   //   "shortcuts" : {
   //     "bindings" : {
   //       "selectWorkspaceByNumber" : "cmd+1",
