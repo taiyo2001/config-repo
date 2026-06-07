@@ -20,8 +20,10 @@ brew install chezmoi 1password-cli shellcheck shfmt make gcc
 
 ### 2. 1Password CLIにサインイン
 
+1Passwordアプリ → **設定** → **開発者** → **「1Password CLIと統合」をオン** にしてから：
+
 ```sh
-op signin
+eval $(op signin)
 ```
 
 > [!IMPORTANT]
@@ -32,21 +34,15 @@ op signin
 > | Personal | `Git Config` | `email` |
 > | Personal | `Git Config` | `signingkey` |
 
-### 3. このリポジトリをホーム直下にクローン
+### 3. chezmoiでセットアップ（クローン＋適用を一括）
 
 ```sh
-git clone git@github.com:taiyo2001/config-repo.git ~/config-repo
+chezmoi init --apply taiyo2001/config-repo
 ```
 
-### 4. chezmoiを適用
+リポジトリは `~/.local/share/chezmoi/` に自動でクローンされます。
 
-```sh
-chezmoi apply
-```
-
-dotfiles が `~/.config/chezmoi/chezmoi.toml` の `sourceDir` 設定に従って `~/config-repo` から展開されます。
-
-### 5. Brewfileからアプリをインストール
+### 4. Brewfileからアプリをインストール
 
 ```sh
 brew bundle --global
@@ -61,7 +57,10 @@ brew bundle --global
 ## dotfilesの編集フロー
 
 ```sh
-# ホームのファイルを編集した後、chezmoiのソースに反映
+# ソースディレクトリに移動して編集
+chezmoi cd
+
+# ホームのファイルを編集した後、ソースに反映
 chezmoi re-add ~/.hammerspoon/init.lua
 
 # 差分確認
