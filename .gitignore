@@ -1,3 +1,12 @@
+# macOS
+.DS_Store
+
+# Vim
+*.swp
+*.swo
+
+# Ruby LSP cache
+.ruby-lsp/
+
 # nvim (LazyVim) — plugin lockfile; let each environment resolve latest
 dot_config/nvim/lazy-lock.json
-

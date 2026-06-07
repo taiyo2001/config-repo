@@ -1,26 +1,63 @@
-name: Check Shell Script Formatting
+name: CI
 on:
   push:
+  pull_request:
 
 jobs:
   check-format:
+    name: Shell Script Formatting
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install shfmt
-        run: |
-          sudo apt install -y shfmt
+        run: sudo apt-get install -y shfmt
 
-      - name: Verify Shell Script Formatting
+      - name: Verify formatting
+        run: shfmt -i 2 -ci -sr -d .
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: "."
+          severity: warning
+          ignore_paths: "dot_zsh utils"
+
+  check-template-vars:
+    name: Unresolved Template Variables
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for unresolved $${...} variables
+        run: bash find_variables.sh
+
+  secret-scanning:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Betterleaks
         run: |
-          DIFF=$(shfmt -i 2 -ci -sr -d .)
-          if [ -n "$DIFF" ]; then
-            echo "Shell script formatting issues found:"
-            echo "$DIFF"
-            exit 1
-          else
-            echo "No formatting issues found."
-          fi
+          curl -sSfL \
+            https://github.com/betterleaks/betterleaks/releases/latest/download/betterleaks-linux-x64 \
+            -o /usr/local/bin/betterleaks
+          chmod +x /usr/local/bin/betterleaks
+
+      - name: Run Betterleaks
+        run: betterleaks scan --report-format sarif --report-path betterleaks-report.sarif
+
+      - name: Upload SARIF report
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: betterleaks-report.sarif
