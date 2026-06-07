@@ -2,7 +2,7 @@
 
 # ===============================================
 # exec source colors.sh script
-# FILE_PATH="$HOME/config-repo/utils/colors.sh"
+# FILE_PATH="$HOME/.local/share/chezmoi/utils/colors.sh"
 # source $FILE_PATH
 # ===============================================
 

@@ -1,5 +1,5 @@
 services:
   zsh-alias:
     build: .
-    container_name: config-repo-container
+    container_name: dotfiles-container
     tty: true
