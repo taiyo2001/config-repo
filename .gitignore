@@ -1,6 +1,3 @@
-/dotfiles/.zsh/.git-completion.sh
-/dotfiles/.zsh/.git-prompt.sh
-
 # nvim (LazyVim) — plugin lockfile; let each environment resolve latest
-dotfiles/home/.config/nvim/lazy-lock.json
+dot_config/nvim/lazy-lock.json
 

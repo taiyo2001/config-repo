@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-FILE_PATH="$HOME/config-repo/utils/colors.sh"
-source $FILE_PATH
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/utils/colors.sh"
 
 TARGET_DIR=${1:-.}
 

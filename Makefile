@@ -1,9 +1,7 @@
-setup/exec:
-	sh find_variables.sh
-	sh move_home.sh
-	sh link_dotfiles.sh
+setup/apply:
+	chezmoi apply
 
-setup/ready:
+setup/check:
 	sh find_variables.sh
 
 format/fix:
