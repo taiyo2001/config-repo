@@ -2,55 +2,91 @@
 
 [reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081)
 
-## SetUp
-> [!IMPORTANT]
-> ホーム直下でクローンすること
+## 構成
 
-### Install(Mac)
-```
-brew install shellcheck shfmt make gcc
-```
+| ディレクトリ | 内容 |
+|---|---|
+| `dot_*` | chezmoi 管理の dotfiles |
+| `app/` | アプリケーション別セットアップ手順 |
+| `dotfiles/` | レガシー設定ファイル（zsh等） |
 
-### ENV
-各環境別に$${xxx}の変数を変更
+## セットアップ（新規マシン）
 
-ex. \$${UserName}、\$${Email}, etc.
-
-> [!TIP]
-> 変数が存在するかの確認
-> ```sh
-> make setup/ready
-> ```
-
-## SetUp
-### Dotfiles
-<!-- インタラクティブに Dotfiles を $HOME ディレクトリに移動 -->
+### 1. 依存ツールのインストール
 
 ```sh
-make setup/exec
-brew bundle --global
-source $file_name
+brew install chezmoi 1password-cli shellcheck shfmt make gcc
 ```
-ex. source .zshrc
 
-### アプリケーションごとのセットアップ項目
+### 2. 1Password CLIにサインイン
+
+1Passwordアプリ → **設定** → **開発者** → **「1Password CLIと統合」をオン** にしてから：
+
+```sh
+eval $(op signin)
+```
+
+> [!IMPORTANT]
+> 1Password に以下のアイテムを作成しておくこと
+>
+> | Vault | Item名 | フィールド |
+> |---|---|---|
+> | Personal | `Git Config` | `email` |
+> | Personal | `Git Config` | `signingkey` |
+
+### 3. chezmoiでセットアップ（クローン＋適用を一括）
+
+```sh
+chezmoi init --apply taiyo2001/config-repo
+```
+
+リポジトリは `~/.local/share/chezmoi/` に自動でクローンされます。
+
+### 4. Brewfileからアプリをインストール
+
+```sh
+brew bundle --global
+```
+
+### アプリケーションごとのセットアップ
 
 [こちら](./app/README.md)を参照
 
+---
+
+## dotfilesの編集フロー
+
+```sh
+# ソースディレクトリに移動して編集
+chezmoi cd
+
+# ホームのファイルを編集した後、ソースに反映
+chezmoi re-add ~/.hammerspoon/init.lua
+
+# 差分確認
+chezmoi diff
+
+# 適用
+chezmoi apply
+```
+
+---
 
 ## 動作確認用のDocker環境
-```
+
+```sh
 make docker/setup
 make docker/exec-zsh
 ```
 
 ## Format
+
 ### Fix
-```
+```sh
 make format/fix
 ```
 
 ### Check
-```
+```sh
 make format/check
 ```

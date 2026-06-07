@@ -1,7 +1,6 @@
 scan_timeout = 10
 
 format = """\
-$conda\
 $os\
 $username\
 $hostname\
@@ -13,9 +12,6 @@ $kubernetes\
 \n\
 $character\
 """
-
-[conda]
-format = '[\($environment\)](white) '
 
 [os]
   disabled = false
