@@ -1,4 +1,4 @@
-# config-repo
+# dotfiles
 
 [reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081)
 
@@ -8,7 +8,6 @@
 |---|---|
 | `dot_*` | chezmoi 管理の dotfiles |
 | `app/` | アプリケーション別セットアップ手順 |
-| `dotfiles/` | レガシー設定ファイル（zsh等） |
 
 ## セットアップ（新規マシン）
 
@@ -33,11 +32,12 @@ eval $(op signin)
 > |---|---|---|
 > | Personal | `Git Config` | `email` |
 > | Personal | `Git Config` | `signingkey` |
+> | Personal | `Claude Code` | `org_uuid` |
 
 ### 3. chezmoiでセットアップ（クローン＋適用を一括）
 
 ```sh
-chezmoi init --apply taiyo2001/config-repo
+chezmoi init --apply taiyo2001
 ```
 
 リポジトリは `~/.local/share/chezmoi/` に自動でクローンされます。
