@@ -1,15 +1,11 @@
 #!/bin/zsh
 
-# exec source colors.sh script
-FILE_PATH="$HOME/config-repo/utils/colors.sh"
-source $FILE_PATH
+source "$HOME/.zsh/colors.sh"
 
-# Git auto update default branch
 function git_auto_update() {
   local current_dir=$(pwd)
 
   if [ -d ".git" ]; then
-
     if [ -n "$1" ]; then
       local default_branch="$1"
     else
@@ -32,12 +28,10 @@ function git_auto_update() {
   fi
 }
 
-# Execute the function name passed as a command-line argument
 if [ -n "$1" ]; then
   function_name=$1
-  shift # Remove function name from the argument list
+  shift
   echo -e "\n${CYAN}[exec] $function_name $@${RESET}\n"
-
   $function_name $@
 else
   echo -e "\n${RED}Please specify a function to run.${RESET}\n"
