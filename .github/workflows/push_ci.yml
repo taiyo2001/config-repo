@@ -1,26 +1,64 @@
-name: Check Shell Script Formatting
+name: CI
 on:
   push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   check-format:
+    name: Shell Script Formatting
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install shfmt
-        run: |
-          sudo apt install -y shfmt
+        run: sudo apt-get install -y shfmt
 
-      - name: Verify Shell Script Formatting
+      - name: Verify formatting
+        run: shfmt -i 2 -ci -sr -d .
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: "."
+          severity: warning
+          ignore_paths: "dot_zsh utils"
+
+  check-template-vars:
+    name: Unresolved Template Variables
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for unresolved $${...} variables
+        run: bash find_variables.sh
+
+  secret-scanning:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Betterleaks
         run: |
-          DIFF=$(shfmt -i 2 -ci -sr -d .)
-          if [ -n "$DIFF" ]; then
-            echo "Shell script formatting issues found:"
-            echo "$DIFF"
-            exit 1
-          else
-            echo "No formatting issues found."
-          fi
+          VERSION=$(curl -s https://api.github.com/repos/betterleaks/betterleaks/releases/latest \
+            | grep '"tag_name"' | cut -d'"' -f4)
+          TMPDIR=$(mktemp -d)
+          curl -sSfL \
+            "https://github.com/betterleaks/betterleaks/releases/download/${VERSION}/betterleaks_${VERSION#v}_linux_x64.tar.gz" \
+            -o "$TMPDIR/betterleaks.tar.gz"
+          tar -xzf "$TMPDIR/betterleaks.tar.gz" -C "$TMPDIR"
+          find "$TMPDIR" -name "betterleaks" -type f -exec mv {} /usr/local/bin/ \;
+          chmod +x /usr/local/bin/betterleaks
+
+      - name: Run Betterleaks
+        run: betterleaks git .
