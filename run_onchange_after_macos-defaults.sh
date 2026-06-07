@@ -11,27 +11,16 @@ echo "Applying macOS defaults..."
 ###############################################################################
 # Finder
 ###############################################################################
-defaults write com.apple.finder AppleShowAllFiles -bool true               # show hidden files
-defaults write com.apple.finder ShowPathbar -bool true                     # show path bar
-defaults write com.apple.finder ShowStatusBar -bool true                   # show status bar
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"        # default list view
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true         # full path in title bar
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"        # search current folder by default
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false # no extension change warning
-
+defaults write com.apple.finder AppleShowAllFiles -bool true        # show hidden files
+defaults write com.apple.finder ShowPathbar -bool true              # show path bar
+defaults write com.apple.finder ShowStatusBar -bool true            # show status bar
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # default list view
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true  # full path in title bar
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" # search current folder by default
 ###############################################################################
 # Global / Quality of life
 ###############################################################################
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true             # show all file extensions
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true # expanded save dialog
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true    # expanded print dialog
-
-###############################################################################
-# Keyboard
-###############################################################################
-defaults write NSGlobalDomain KeyRepeat -int 2                     # key repeat rate (fast)
-defaults write NSGlobalDomain InitialKeyRepeat -int 15             # initial key repeat delay (short)
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false # disable press-and-hold (enable key repeat)
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show all file extensions
 
 ###############################################################################
 # Dock
@@ -42,21 +31,17 @@ defaults write com.apple.dock show-recents -bool false # hide recent apps sectio
 ###############################################################################
 # Screenshots
 ###############################################################################
-mkdir -p ~/Desktop/screenshot
-defaults write com.apple.screencapture location -string "~/Desktop/screenshot"
+mkdir -p "$HOME/Desktop/screenshot"
+defaults write com.apple.screencapture location -string "$HOME/Desktop/screenshot"
 defaults write com.apple.screencapture disable-shadow -bool true # no drop shadow
 defaults write com.apple.screencapture type -string "png"
 
 ###############################################################################
 # Trackpad
 ###############################################################################
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true    # tap to click
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true # natural scroll
-
-###############################################################################
-# TextEdit
-###############################################################################
-defaults write com.apple.TextEdit RichText -bool false # open in plain text mode
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true        # tap to click
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool true     # natural scroll
+defaults write com.apple.AppleMultitouchTrackpad ForceSuppressed -bool true # disable Force Touch (押し込み)
 
 ###############################################################################
 # Restart affected apps to apply changes
