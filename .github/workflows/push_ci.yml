@@ -1,6 +1,8 @@
 name: CI
 on:
   push:
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -48,16 +50,15 @@ jobs:
 
       - name: Install Betterleaks
         run: |
+          VERSION=$(curl -s https://api.github.com/repos/betterleaks/betterleaks/releases/latest \
+            | grep '"tag_name"' | cut -d'"' -f4)
+          TMPDIR=$(mktemp -d)
           curl -sSfL \
-            https://github.com/betterleaks/betterleaks/releases/latest/download/betterleaks-linux-x64 \
-            -o /usr/local/bin/betterleaks
+            "https://github.com/betterleaks/betterleaks/releases/download/${VERSION}/betterleaks_${VERSION#v}_linux_x64.tar.gz" \
+            -o "$TMPDIR/betterleaks.tar.gz"
+          tar -xzf "$TMPDIR/betterleaks.tar.gz" -C "$TMPDIR"
+          find "$TMPDIR" -name "betterleaks" -type f -exec mv {} /usr/local/bin/ \;
           chmod +x /usr/local/bin/betterleaks
 
       - name: Run Betterleaks
-        run: betterleaks scan --report-format sarif --report-path betterleaks-report.sarif
-
-      - name: Upload SARIF report
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: betterleaks-report.sarif
+        run: betterleaks git .
