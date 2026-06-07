@@ -20,7 +20,8 @@ zstyle ":completion:*:commands" rehash 1
 # Load kubectl completions
 # https://kubernetes.io/ja/docs/reference/kubectl/cheatsheet/#zsh
 source <(kubectl completion zsh)
-echo "[[ $commands[kubectl] ]] && source <(kubectl completion zsh)" >> ~/.zshrc
+
+eval "$(git gtr completion zsh)"
 
 # Load zsh-completions
 if type brew &>/dev/null; then
@@ -80,6 +81,11 @@ export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border \
 --preview-window 'right:50%' \
 --bind 'ctrl-/:change-preview-window(80%|hidden|)' \
 --bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'"
+
+# expo android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 

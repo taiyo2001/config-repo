@@ -1,0 +1,58 @@
+[user]
+	name = taiyo2001
+	email = {{ onepasswordRead "op://Personal/Git Config/email" }}
+	signingkey = {{ onepasswordRead "op://Personal/Git Config/signingkey" }}
+
+[color]
+	ui = true
+
+[core]
+	editor = vim
+	autocrlf = input
+	filemode = false
+	ignorecase = false
+	quotepath = false
+
+[merge]
+	conflictstyle = zdiff3
+
+[push]
+	default = current
+
+[fetch]
+	prune = true
+
+[alias]
+	graph = log --oneline --graph --decorate --all
+	co = checkout
+	stash = stash -u
+	oneline = log --oneline -n 10
+	diffw = diff --word-diff
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[ghq]
+	root = ~/workspace
+	# format = ssh
+
+[commit]
+	# gpgsign = true
+
+[init]
+	defaultBranch = main
+	templatedir = ~/.git-templates/git-secrets
+
+# git secrets --register-aws --global
+[secrets]
+	providers = git secrets --aws-provider
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+[status]
+	showUntrackedFiles = all

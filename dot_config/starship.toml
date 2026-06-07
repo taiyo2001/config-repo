@@ -1,0 +1,87 @@
+scan_timeout = 10
+
+format = """\
+$os\
+$username\
+$hostname\
+[:](white bold)\
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+\n\
+$character\
+"""
+
+[os]
+  disabled = false
+  format   = "[$symbol](bold white)"
+  [os.symbols]
+    Macos  = " "
+    Ubuntu = " "
+
+[username]
+  disabled    = false
+  format      = "[$user]($style)"
+  show_always = true
+  style_root  = "black bold"
+  style_user  = "white bold"
+
+[hostname]
+  format   = "[@$hostname]($style)"
+  ssh_only = false
+  style    = "green bold"
+
+[directory]
+  format          = "[$path]($style)[$read_only]($read_only_style)"
+  read_only       = " 󰌾"
+  read_only_style = "red"
+  # style             = "bright-purple"
+  # style             = 'fg:#7aa2f7 bg:#1a1b26'
+  style             = 'fg:#7aa2f7'
+  truncate_to_repo  = false
+  truncation_symbol = "~/"
+
+[git_branch]
+  format = "[ $symbol$branch]($style)"
+  symbol = " "
+
+[git_status]
+  ahead      = "⇡${count}"
+  behind     = "⇣${count}"
+  conflicted = "="
+  deleted    = "✘${count}"
+  diverged   = "⇕"
+  format     = '( [\[$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead$behind\]]($style))'
+  modified   = "!${count}"
+  renamed    = "»"
+  staged     = "+${count}"
+  stashed    = "$"
+  style      = "yellow"
+  untracked  = "?${count}"
+  up_to_date = "✓"
+
+[kubernetes]
+  format = '[ 󱃾 c:$context n:$namespace]($style)'
+  style = "bold blue"
+  disabled = false
+
+  # [aws]
+  #   format = 'on [$symbol($profile )(\($region\) )]($style)'
+  #   style  = "bold blue"
+
+  #   [aws.region_aliases]
+  #     ap-northeast-1 = "jp"
+
+  # [azure]
+  #   disabled = false
+  #   format   = 'on [$symbol($subscription)]($style) '
+  #   style    = 'blue bold'
+  #   symbol   = '󰠅 '
+
+  # [docker_context]
+  #   format = "[🐳 $context](blue bold)"
+
+[character]
+  error_symbol   = "[✗](red)"
+  success_symbol = "[\\$](white)"
