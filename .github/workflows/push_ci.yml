@@ -55,6 +55,8 @@ jobs:
   startup-benchmark:
     name: Zsh Startup Benchmark
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -84,6 +86,33 @@ jobs:
           else:
               print(f'OK: within 150ms target')
           "
+
+      - name: Convert to benchmark-action format
+        run: |
+          python3 -c "
+          import json
+          with open('bench.json') as f:
+              d = json.load(f)
+          median_ms = d['results'][0]['median'] * 1000
+          result = [{'name': 'zsh startup', 'value': round(median_ms, 2), 'unit': 'ms'}]
+          with open('benchmark-result.json', 'w') as f:
+              json.dump(result, f)
+          print(json.dumps(result, indent=2))
+          "
+
+      - name: Store benchmark result
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Zsh Startup Time
+          tool: customSmallerIsBetter
+          output-file-path: benchmark-result.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: ${{ github.ref == 'refs/heads/main' }}
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: benchmarks
+          alert-threshold: "150%"
+          comment-on-alert: true
+          fail-on-alert: false
 
   secret-scanning:
     name: Secret Scanning
