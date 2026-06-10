@@ -7,7 +7,7 @@ ITEM="dotfiles"
 echo "1Password に '${VAULT}/${ITEM}' アイテムをセットアップします"
 echo ""
 
-if op item get "${ITEM}" --vault "${VAULT}" &>/dev/null; then
+if op item get "${ITEM}" --vault "${VAULT}" &> /dev/null; then
   echo "アイテム '${ITEM}' は既に存在します。上書きしますか？ [y/N]"
   read -r answer
   if [[ "${answer}" != "y" && "${answer}" != "Y" ]]; then
