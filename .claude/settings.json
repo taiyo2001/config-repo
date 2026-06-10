@@ -110,10 +110,6 @@
     "ask": [
       "Bash(git push *)"
     ],
-    "additionalDirectories": [
-      "/Users/taiyo.sato.01/workspace/tmp",
-      "/Users/taiyo.sato.01/workspace/worktrees"
-    ],
     "deny": [
       "Read(**/.env)",
       "Read(**/.env.*)",

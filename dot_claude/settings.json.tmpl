@@ -1,9 +1,11 @@
 {
   "forceLoginMethod": "claudeai",
-  "forceLoginOrgUUID": "{{ onepasswordRead "op://Personal/Claude Code/org_uuid" }}",
+  "forceLoginOrgUUID": "{{ onepasswordRead "op://Private/dotfiles/claude code org_uuid" }}",
   "language": "japanese",
   "permissions": {
     "allow": [
+      "Fetch(https://*)",
+
       "Bash(ls)",
       "Bash(ls *)",
       "Bash(pwd)",
@@ -47,6 +49,21 @@
       "Bash(env)",
       "Bash(history)",
       "Bash(uname *)",
+
+      "Bash(gcloud * list*)",
+      "Bash(gcloud * describe*)",
+      "Bash(gcloud * get-iam-policy*)",
+      "Bash(gcloud config get-value*)",
+      "Bash(gcloud config list*)",
+      "Bash(gcloud auth list*)",
+      "Bash(gcloud logging read*)",
+      "Bash(gcloud storage ls*)",
+      "Bash(gcloud storage cat*)",
+      "Bash(gcloud --version)",
+      "Bash(gcloud version)",
+      "Bash(gcloud info)",
+      "Bash(gcloud help*)",
+
       "Bash(gh issue view*)",
       "Bash(gh issue list*)",
       "Bash(gh issue status*)",
@@ -55,6 +72,8 @@
       "Bash(gh pr status*)",
       "Bash(gh pr diff*)",
       "Bash(gh pr checks*)",
+      "Bash(gh search *)",
+
       "Bash(git status*)",
       "Bash(git -C * status*)",
       "Bash(git log*)",
@@ -85,19 +104,59 @@
       "Bash(git -C * config --get *)",
       "Bash(git -C * config --list)",
       "Bash(git -C * config -l)",
-      "mcp__claude_ai_Notion__notion-fetch"
+
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Google_Calendar__get_event",
+      "mcp__claude_ai_Google_Calendar__list_calendars",
+      "mcp__claude_ai_Google_Calendar__list_events",
+      "mcp__claude_ai_Google_Calendar__suggest_time"
     ],
     "ask": [
       "Bash(git push)",
       "Bash(git push *)"
     ],
+    "additionalDirectories": [
+      "{{ .chezmoi.homeDir }}/workspace/tmp",
+      "{{ .chezmoi.homeDir }}/workspace/worktrees"
+    ],
     "deny": [
-      "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./.envrc)",
       "Read(**/.env)",
       "Read(**/.env.*)",
       "Read(**/.envrc)",
+
+      "Read(**/.ssh/**)",
+      "Read(**/.gnupg/**)",
+      "Read(**/id_rsa)",
+      "Read(**/id_rsa.*)",
+      "Read(**/id_dsa)",
+      "Read(**/id_dsa.*)",
+      "Read(**/id_ecdsa)",
+      "Read(**/id_ecdsa.*)",
+      "Read(**/id_ed25519)",
+      "Read(**/id_ed25519.*)",
+
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+
+      "Read(**/.aws/credentials)",
+      "Read(**/.aws/config)",
+      "Read(**/.config/gcloud/**)",
+      "Read(**/.docker/config.json)",
+      "Read(**/.kube/config)",
+      "Read(**/service-account*.json)",
+      "Read(**/credentials*.json)",
+
+      "Read(**/.netrc)",
+      "Read(**/.npmrc)",
+      "Read(**/.pypirc)",
+      "Read(**/.gem/credentials)",
+      "Read(**/.cargo/credentials*)",
+
+      "Read(**/.claude/.credentials.json)",
+      "Read(**/.anthropic/**)",
+
       "Bash(cat .env*)",
       "Bash(cat .envrc*)",
       "Bash(cat *.env)",
@@ -115,7 +174,13 @@
       "Bash(more .env*)",
       "Bash(more .envrc*)",
       "Bash(grep * .env*)",
-      "Bash(grep * .envrc*)"
+      "Bash(grep * .envrc*)",
+
+      "Bash(gcloud auth print-access-token*)",
+      "Bash(gcloud auth print-identity-token*)",
+      "Bash(gcloud auth application-default print-access-token*)",
+      "Bash(gcloud secrets versions access*)",
+      "Bash(gcloud iam service-accounts keys create*)"
     ]
   }
 }
