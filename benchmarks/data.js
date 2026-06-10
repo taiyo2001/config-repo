@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781114702567,
+  "lastUpdate": 1781115233115,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -57,6 +57,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 245.02,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "distinct": true,
+          "id": "a8280d3dd9714d8eafd8390c53748e64d6c5d0d9",
+          "message": "chore: Renovate を追加（GitHub Actions 月次更新）\n\nenabledManagers を github-actions のみに限定し、\n毎月1日に更新 PR を作成する設定。\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T03:13:11+09:00",
+          "tree_id": "98f9205496a240d92d3d9a239715a54aaea1d68f",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/a8280d3dd9714d8eafd8390c53748e64d6c5d0d9"
+        },
+        "date": 1781115231399,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 278.55,
             "unit": "ms"
           }
         ]
