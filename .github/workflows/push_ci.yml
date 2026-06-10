@@ -101,13 +101,14 @@ jobs:
           "
 
       - name: Store benchmark result
+        if: github.ref == 'refs/heads/main'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Zsh Startup Time
           tool: customSmallerIsBetter
           output-file-path: benchmark-result.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          auto-push: ${{ github.ref == 'refs/heads/main' }}
+          auto-push: true
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: benchmarks
           alert-threshold: "150%"
