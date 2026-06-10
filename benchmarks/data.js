@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781113856718,
+  "lastUpdate": 1781114702567,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -28,6 +28,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 214.47,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "distinct": true,
+          "id": "74c5e3bd0f9153b08da6b5296238e44b80e58825",
+          "message": "docs: README に Zsh Startup Benchmark のリンクを追加\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T03:04:28+09:00",
+          "tree_id": "1aae2b4700b22269c7b5a0b2f4cded0ef24eba08",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/74c5e3bd0f9153b08da6b5296238e44b80e58825"
+        },
+        "date": 1781114700804,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 245.02,
             "unit": "ms"
           }
         ]
