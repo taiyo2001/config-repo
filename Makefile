@@ -4,6 +4,9 @@ setup/apply:
 setup/check:
 	sh find_variables.sh
 
+op/setup:
+	bash setup_1password.sh
+
 format/fix:
 	shfmt -i 2 -ci -sr -w .
 

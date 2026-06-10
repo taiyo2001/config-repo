@@ -25,24 +25,37 @@ brew install chezmoi 1password-cli shellcheck shfmt make gcc
 eval $(op signin)
 ```
 
-> [!IMPORTANT]
-> 1Password に以下のアイテムを作成しておくこと
->
-> | Vault | Item名 | フィールド |
-> |---|---|---|
-> | Personal | `Git Config` | `email` |
-> | Personal | `Git Config` | `signingkey` |
-> | Personal | `Claude Code` | `org_uuid` |
-
-### 3. chezmoiでセットアップ（クローン＋適用を一括）
+### 3. dotfilesリポジトリをクローン
 
 ```sh
-chezmoi init --apply taiyo2001
+chezmoi init taiyo2001
 ```
 
-リポジトリは `~/.local/share/chezmoi/` に自動でクローンされます。
+リポジトリが `~/.local/share/chezmoi/` にクローンされます（この時点ではまだ適用しません）。
 
-### 4. Brewfileからアプリをインストール
+### 4. 1Passwordアイテムをセットアップ
+
+`Private` vault に `dotfiles` アイテムを作成します：
+
+```sh
+make -C ~/.local/share/chezmoi op/setup
+```
+
+以下のフィールドへの入力を求められます：
+
+| フィールド名 | 内容 |
+|---|---|
+| `git config email` | git のメールアドレス |
+| `git config signingkey` | git 署名キー（GPG key ID）|
+| `claude code org_uuid` | Claude Code org UUID |
+
+### 5. dotfilesを適用
+
+```sh
+chezmoi apply
+```
+
+### 6. Brewfileからアプリをインストール
 
 ```sh
 brew bundle --global
