@@ -1,6 +1,6 @@
 # dotfiles
 
-[reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081)
+[reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081) | [Zsh Startup Benchmark](https://taiyo2001.github.io/dotfiles/)
 
 ## 構成
 
