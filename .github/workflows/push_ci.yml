@@ -29,7 +29,7 @@ jobs:
         with:
           scandir: "."
           severity: warning
-          ignore_paths: "dot_zsh utils"
+          ignore_paths: "home/dot_zsh utils"
 
   check-template-vars:
     name: Unresolved Template Variables
@@ -49,14 +49,16 @@ jobs:
           fetch-depth: 0
 
       - name: Install Betterleaks
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=$(curl -s https://api.github.com/repos/betterleaks/betterleaks/releases/latest \
-            | grep '"tag_name"' | cut -d'"' -f4)
+          VERSION=$(gh release view --repo betterleaks/betterleaks --json tagName -q '.tagName')
           TMPDIR=$(mktemp -d)
-          curl -sSfL \
-            "https://github.com/betterleaks/betterleaks/releases/download/${VERSION}/betterleaks_${VERSION#v}_linux_x64.tar.gz" \
-            -o "$TMPDIR/betterleaks.tar.gz"
-          tar -xzf "$TMPDIR/betterleaks.tar.gz" -C "$TMPDIR"
+          gh release download "$VERSION" \
+            --repo betterleaks/betterleaks \
+            --pattern "betterleaks_${VERSION#v}_linux_x64.tar.gz" \
+            --dir "$TMPDIR"
+          tar -xzf "$TMPDIR/betterleaks_${VERSION#v}_linux_x64.tar.gz" -C "$TMPDIR"
           find "$TMPDIR" -name "betterleaks" -type f -exec mv {} /usr/local/bin/ \;
           chmod +x /usr/local/bin/betterleaks
 
