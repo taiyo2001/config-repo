@@ -40,6 +40,81 @@ jobs:
       - name: Check for unresolved $${...} variables
         run: bash find_variables.sh
 
+  bats-smoke-test:
+    name: Bats Smoke Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install bats
+        run: sudo apt-get install -y bats
+
+      - name: Run smoke tests
+        run: bats tests/
+
+  startup-benchmark:
+    name: Zsh Startup Benchmark
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          brew install hyperfine zsh-autosuggestions zsh-syntax-highlighting \
+            zsh-git-prompt starship direnv z kubectl
+
+      - name: Setup zshrc
+        run: cp home/dot_zshrc ~/.zshrc
+
+      - name: Benchmark zsh startup
+        run: |
+          hyperfine --warmup 3 --export-json bench.json 'zsh -i -c exit'
+          python3 -c "
+          import json, sys
+          with open('bench.json') as f:
+              d = json.load(f)
+          median = d['results'][0]['median']
+          ms = median * 1000
+          print(f'Median startup time: {ms:.0f}ms')
+          if ms > 500:
+              print(f'FAIL: {ms:.0f}ms exceeds 500ms CI threshold')
+              sys.exit(1)
+          elif ms > 150:
+              print(f'WARNING: {ms:.0f}ms exceeds 150ms local target')
+          else:
+              print(f'OK: within 150ms target')
+          "
+
+      - name: Convert to benchmark-action format
+        run: |
+          python3 -c "
+          import json
+          with open('bench.json') as f:
+              d = json.load(f)
+          median_ms = d['results'][0]['median'] * 1000
+          result = [{'name': 'zsh startup', 'value': round(median_ms, 2), 'unit': 'ms'}]
+          with open('benchmark-result.json', 'w') as f:
+              json.dump(result, f)
+          print(json.dumps(result, indent=2))
+          "
+
+      - name: Store benchmark result
+        if: github.ref == 'refs/heads/main'
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Zsh Startup Time
+          tool: customSmallerIsBetter
+          output-file-path: benchmark-result.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          gh-pages-branch: gh-pages
+          benchmark-data-dir-path: benchmarks
+          alert-threshold: "150%"
+          comment-on-alert: true
+          fail-on-alert: false
+
   secret-scanning:
     name: Secret Scanning
     runs-on: ubuntu-latest
