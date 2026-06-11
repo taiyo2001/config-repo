@@ -6,8 +6,10 @@
 
 | ディレクトリ | 内容 |
 |---|---|
-| `dot_*` | chezmoi 管理の dotfiles |
+| `home/` | chezmoi 管理の dotfiles（`dot_*` / `run_*`） |
+| `home/dot_zsh/` | zsh モジュール（exports / aliases / functions / completions） |
 | `app/` | アプリケーション別セットアップ手順 |
+| `tests/` | Bats スモークテスト |
 
 ## セットアップ（新規マシン）
 
@@ -52,8 +54,10 @@ make -C ~/.local/share/chezmoi op/setup
 ### 5. dotfilesを適用
 
 ```sh
-chezmoi apply
+make setup/apply
 ```
+
+`chezmoi apply` の実行後、`lefthook install` で Git フックも自動セットアップされます。
 
 ### 6. Brewfileからアプリをインストール
 
@@ -92,14 +96,28 @@ make docker/setup
 make docker/exec-zsh
 ```
 
-## Format
+## CI / 品質チェック
 
-### Fix
+### ローカルで全チェックを実行
+
 ```sh
-make format/fix
+make ci/local
 ```
 
-### Check
+shfmt・shellcheck・テンプレート変数チェック・Bats スモークテストを一括実行します。
+
+### pre-push フック
+
+`git push` 時に自動で `make ci/local` と同等のチェックが実行されます（lefthook）。
+初回セットアップ後に一度だけ以下を実行してください：
+
 ```sh
-make format/check
+lefthook install
+```
+
+### フォーマット
+
+```sh
+make format/fix    # 自動修正
+make format/check  # 確認のみ
 ```
