@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781165791675,
+  "lastUpdate": 1781167899347,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -231,6 +231,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 60.88,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8b5bbaa37d7585c3fdf989c5c60b9b238488ebf0",
+          "message": "feat: Docker サンドボックス環境を実用レベルに強化 (#17)\n\n- CI=true 環境変数を追加（/.dockerenv 非存在時の brew スキップを保証）\n- run_once_install-packages.sh に CI 検出を追加（/.dockerenv || CI=true）\n- apt ツールを fzf/tmux/bat に絞り込み、bat symlink（batcat→bat）追加\n- chezmoi/starship/direnv/fzf/eza/bat/ghq/peco を mise に統一\n- .git 除外対応: git init -b main で初期コミットを作成（ブランチ表示用）\n- chezmoi apply 後に git config --global でユーザー情報を docker 用に上書き\n- compose.yml に hostname: dotfiles-sandbox を追加\n- WORKDIR を ~/.local/share/chezmoi に変更（git ブランチをプロンプトに表示）\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T17:51:09+09:00",
+          "tree_id": "911d1c89c6a33a0d6adfb610ab676c7e7e793c90",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/8b5bbaa37d7585c3fdf989c5c60b9b238488ebf0"
+        },
+        "date": 1781167898273,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 40.03,
             "unit": "ms"
           }
         ]
