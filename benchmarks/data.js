@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781145257869,
+  "lastUpdate": 1781149105852,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -115,6 +115,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 97.24,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "656e75964f3f3f36cc90b98ea8c9532de293a350",
+          "message": "feat: マルチマシン対応・Brewfile テンプレート化・brew 自動更新・Neovim tmpl ハイライト (#13)\n\n### マルチマシン対応\n- .chezmoi.toml.tmpl に machineType / fullInstall を追加\n- dot_Brewfile → dot_Brewfile.tmpl に変換し4セクションに分割\n  - Core: 常にインストールする CLI・GUI ツール\n  - Personal: BTT / Hammerspoon / TablePlus 等\n  - Work: （将来の追加用）\n  - Full install: imagemagick 等の重いライブラリ・インフラツール\n\n### brew 自動更新（毎週日曜 10:00）\n- ~/.local/bin/brew-upgrade.sh: update → upgrade → terminal-notifier 通知\n- ~/Library/LaunchAgents/local.brew-upgrade.plist: launchd 定義\n- run_onchange スクリプトで chezmoi apply 時に自動ロード\n\n### Neovim .tmpl シンタックスハイライト\n- autocmds.lua: *.toml.tmpl → toml, dot_Brewfile.tmpl → ruby 等の autocmd\n- options.lua: 拡張子 tmpl → gotmpl フォールバック, Brewfile → ruby\n- plugins/treesitter.lua: gotmpl, go, dockerfile, hcl, terraform, sql, proto を追加\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T12:37:58+09:00",
+          "tree_id": "a283c2fe90b940dd36f41becf015daf3e448f4bb",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/656e75964f3f3f36cc90b98ea8c9532de293a350"
+        },
+        "date": 1781149103849,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 39.48,
             "unit": "ms"
           }
         ]
