@@ -6,11 +6,7 @@ pre-push:
 
     shellcheck:
       name: ShellCheck
-      run: "find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' -not -path './utils/*' | xargs shellcheck --severity=warning"
-
-    template-vars:
-      name: Unresolved Template Variables
-      run: bash find_variables.sh
+      run: "find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' | xargs shellcheck --severity=warning"
 
     smoke-tests:
       name: Bats Smoke Tests

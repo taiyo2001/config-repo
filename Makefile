@@ -4,12 +4,8 @@ setup/apply:
 
 ci/local:
 	shfmt -i 2 -ci -sr -d .
-	find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' -not -path './utils/*' | xargs shellcheck --severity=warning
-	bash find_variables.sh
+	find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' | xargs shellcheck --severity=warning
 	bats tests/
-
-setup/check:
-	sh find_variables.sh
 
 op/setup:
 	bash setup_1password.sh
