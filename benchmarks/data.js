@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781190866645,
+  "lastUpdate": 1781191710474,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -318,6 +318,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 49.15,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a119ffed9f824bc5e27c0276373e5acc549541f7",
+          "message": "feat: tpm・tmux プラグインのインストールを自動化 (#21)\n\n* feat: tpm・tmux プラグインのインストールを自動化\n\n- run_once_install-tpm.sh を追加し chezmoi apply 時に tpm クローン・プラグインインストールを自動実行\n- app/README にプレフィックスキー（Ctrl+q）の注記を追加\n- README のセットアップ手順に tpm 自動インストールを追記\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: 技術スタックに tpm 追加・プレフィックスキー注記を README に移動\n\n- 技術スタック表の開発環境行に tpm を追加\n- tmux プレフィックスキー（Ctrl+q）の注記をテーブル直下に配置\n- app/README から tpm セクションを削除\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-12T00:27:58+09:00",
+          "tree_id": "a909c87317724488904fc312b772731810da1a52",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/a119ffed9f824bc5e27c0276373e5acc549541f7"
+        },
+        "date": 1781191708907,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 41.33,
             "unit": "ms"
           }
         ]
