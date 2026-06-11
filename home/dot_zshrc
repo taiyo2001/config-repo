@@ -6,16 +6,19 @@ source "$HOME/.zsh/aliases.zsh"
 source "$HOME/.zsh/functions.zsh"
 source "$HOME/.zsh/completions.zsh"
 
-# Plugins
-source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Plugins (managed by Sheldon)
+eval "$(sheldon source)"
 
 # Tools
 eval "$(mise activate zsh)"
 test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh"
-. "$BREW_PREFIX/etc/profile.d/z.sh"
 
 eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+
+# fzf official key bindings (^T: file search, Alt+C: cd into subdir)
+source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 
 # Directory navigation
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook

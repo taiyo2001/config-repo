@@ -19,17 +19,18 @@ copy() {
   fi
 }
 
-fzf-select-history() {
-  local cmd
-  cmd=$(history -n -r 1 | awk '!seen[$0]++' | fzf --query "$LBUFFER")
-  if [[ -n $cmd ]]; then
-    LBUFFER=$cmd
-    zle reset-prompt
-    zle accept-line
-  fi
-}
-zle -N fzf-select-history
-bindkey '^R' fzf-select-history
+# fzf-select-history は atuin (^R) に置き換え済みのためコメントアウト
+# fzf-select-history() {
+#   local cmd
+#   cmd=$(history -n -r 1 | awk '!seen[$0]++' | fzf --query "$LBUFFER")
+#   if [[ -n $cmd ]]; then
+#     LBUFFER=$cmd
+#     zle reset-prompt
+#     zle accept-line
+#   fi
+# }
+# zle -N fzf-select-history
+# bindkey '^R' fzf-select-history
 
 fzf-cdr() {
   local selected_dir
@@ -41,7 +42,7 @@ fzf-cdr() {
   fi
 }
 zle -N fzf-cdr
-bindkey 'cdr' fzf-cdr
+bindkey '^f' fzf-cdr
 
 fzf_ghq() {
   local dir
