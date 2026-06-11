@@ -16,7 +16,7 @@
 ### 1. 依存ツールのインストール
 
 ```sh
-brew install chezmoi 1password-cli shellcheck shfmt make gcc
+brew install chezmoi 1password-cli shellcheck shfmt bats-core lefthook make gcc
 ```
 
 ### 2. 1Password CLIにサインイン
