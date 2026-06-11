@@ -3,15 +3,19 @@ setup/apply:
 	lefthook install
 
 ci/local:
-	shfmt -i 2 -ci -sr -d .
-	find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' | xargs shellcheck --severity=warning
-	bats tests/
+	lefthook run pre-push
 
 op/setup:
 	bash setup_1password.sh
 
+docker/build:
+	docker compose build
+
 docker/setup:
-	docker compose up --build
+	docker compose up --build -d
 
 docker/exec-zsh:
-	docker exec -it config-repo-container zsh
+	docker exec -it dotfiles-container zsh
+
+docker/down:
+	docker compose down

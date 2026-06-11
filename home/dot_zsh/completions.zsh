@@ -24,7 +24,7 @@ if [[ ! -f "$_kubectl_comp" ]] || [[ -n $(find "$_kubectl_comp" -mtime +7 2> /de
 fi
 source "$_kubectl_comp" 2> /dev/null
 
-eval "$(git gtr completion zsh)"
+command -v git-gtr &> /dev/null && eval "$(git gtr completion zsh)"
 
 # terraform autocomplete
 autoload -U +X bashcompinit && bashcompinit
