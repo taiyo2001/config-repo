@@ -8,7 +8,6 @@ source "$HOME/.zsh/completions.zsh"
 
 # Plugins
 source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$BREW_PREFIX/opt/zsh-git-prompt/zshrc.sh"
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Tools
@@ -21,12 +20,5 @@ eval "$(direnv hook zsh)"
 # Directory navigation
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
-
-# Prompt
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '(%b)'
-setopt prompt_subst
-export PS1='%F{green}%n@%m%f:%F{blue}%~%f%F{red}$(git_prompt_info)%f$ '
 
 eval "$(starship init zsh)"
