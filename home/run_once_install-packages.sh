@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# Docker 環境ではスキップ
+if [[ -f /.dockerenv ]]; then
+  echo "Docker 環境のためパッケージインストールをスキップします。"
+  exit 0
+fi
+
 # Homebrew がなければインストール
 if ! command -v brew &> /dev/null; then
   read -rp "Homebrew がインストールされていません。インストールしますか？ [y/N]: " confirm

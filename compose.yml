@@ -1,5 +1,6 @@
 services:
-  zsh-alias:
+  dotfiles:
     build: .
     container_name: dotfiles-container
     tty: true
+    stdin_open: true

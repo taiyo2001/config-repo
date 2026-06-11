@@ -8,7 +8,7 @@
 
 macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](https://developer.1password.com/docs/cli/) で機密情報を安全に管理し、[mise](https://mise.jdx.dev/) でランタイムバージョンを統一。個人 / 仕事マシンの分岐にも対応。
 
-> **Note:** これらの設定は自分の環境に合わせたものです。盲目的に使わず、内容を確認してから適用してください。
+気になる設定は[サンドボックス環境](#サンドボックス環境docker)で試してから適用できます。
 
 ![screenshot](./docs/screenshot.png)
 
@@ -150,12 +150,23 @@ chezmoi apply
 
 ---
 
-## 動作確認用のDocker環境
+## サンドボックス環境（Docker）
+
+実機に適用する前に Docker 上で設定を試せます。1Password は不要で、ダミー値で `chezmoi apply` が完走します。
 
 ```sh
-make docker/setup
-make docker/exec-zsh
+make docker/setup    # イメージのビルドと起動
+make docker/exec-zsh # コンテナ内の zsh に入る
+make docker/down     # コンテナを停止・削除
 ```
+
+コンテナ内でできること：
+
+- zsh の設定変更（aliases・functions・exports など）の動作確認
+- `chezmoi apply` の実行と結果の検証
+- スクリプトの挙動テスト
+
+> Homebrew パッケージのインストールと macOS システム設定の変更はコンテナ内では自動的にスキップされます。
 
 ## CI / 品質チェック
 
@@ -165,7 +176,7 @@ make docker/exec-zsh
 make ci/local
 ```
 
-shfmt・shellcheck・テンプレート変数チェック・Bats スモークテストを一括実行します。
+shfmt・shellcheck・Bats スモークテストを一括実行します。
 
 ### pre-push フック
 

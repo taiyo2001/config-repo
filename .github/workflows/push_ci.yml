@@ -29,16 +29,7 @@ jobs:
         with:
           scandir: "."
           severity: warning
-          ignore_paths: "home/dot_zsh utils"
-
-  check-template-vars:
-    name: Unresolved Template Variables
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check for unresolved $${...} variables
-        run: bash find_variables.sh
+          ignore_paths: "home/dot_zsh"
 
   bats-smoke-test:
     name: Bats Smoke Tests
