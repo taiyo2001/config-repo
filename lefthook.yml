@@ -1,0 +1,17 @@
+pre-push:
+  commands:
+    format-check:
+      name: Shell Script Formatting
+      run: shfmt -i 2 -ci -sr -d .
+
+    shellcheck:
+      name: ShellCheck
+      run: "find . -name '*.sh' -not -path './.git/*' -not -path './home/dot_zsh/*' -not -path './utils/*' | xargs shellcheck --severity=warning"
+
+    template-vars:
+      name: Unresolved Template Variables
+      run: bash find_variables.sh
+
+    smoke-tests:
+      name: Bats Smoke Tests
+      run: bats tests/
