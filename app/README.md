@@ -13,15 +13,9 @@
 [reference: BetterTouchTool](https://webrandum.net/bettertouchtool-export-import/)
 
 ### tpm (Tmux Plugin Manager)
-tpmを導入
-```
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
 
-tpm管理のプラグインをインストール
+`chezmoi apply` 実行時に `run_once_install-tpm.sh` が自動でインストールします。手動操作は不要です。
 
-tmux内で以下を実行
-```
-pfx + I
-```
+> **Note:** tmux のプレフィックスキーはデフォルトの `Ctrl+b` から `Ctrl+q` に変更しています。
+
 参考：[document](https://github.com/tmux-plugins/tpm)

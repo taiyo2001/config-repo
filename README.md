@@ -121,6 +121,7 @@ make -C ~/.local/share/chezmoi setup/apply
 - Homebrew パッケージ（Brewfile）のインストール
 - macOS システム設定の変更
 - `lefthook install` による Git フックのセットアップ
+- tpm（Tmux Plugin Manager）および tmux プラグインのインストール
 
 ### アプリケーションごとのセットアップ
 
