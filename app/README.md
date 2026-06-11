@@ -8,11 +8,9 @@
 
 [reference: iTerm2](https://qiita.com/reoring/items/a0f3d6186efd11c87f1b)
 
+> **Note:** 現在はメインターミナルとして [cmux](https://www.cmux.dev/) を使用。iTerm2 設定は参考として保持。
+
 [reference: BetterTouchTool](https://webrandum.net/bettertouchtool-export-import/)
-
-### Git関連スニペットファイルをインストール
-
-reference：[Qiita記事](https://qiita.com/Ping/items/234b8974bdf2a5e618a5)
 
 ### tpm (Tmux Plugin Manager)
 tpmを導入
