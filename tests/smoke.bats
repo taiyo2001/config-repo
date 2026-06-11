@@ -52,6 +52,29 @@ REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
   [ -f "$REPO_ROOT/home/dot_config/nvim/init.lua" ]
 }
 
+# --- zsh modules ---
+
+@test "home/dot_zsh/exports.zsh exists" {
+  [ -f "$REPO_ROOT/home/dot_zsh/exports.zsh" ]
+}
+
+@test "home/dot_zsh/aliases.zsh exists" {
+  [ -f "$REPO_ROOT/home/dot_zsh/aliases.zsh" ]
+}
+
+@test "home/dot_zsh/functions.zsh exists" {
+  [ -f "$REPO_ROOT/home/dot_zsh/functions.zsh" ]
+}
+
+@test "home/dot_zsh/completions.zsh exists" {
+  [ -f "$REPO_ROOT/home/dot_zsh/completions.zsh" ]
+}
+
+@test "dot_zshrc sources all modules" {
+  run grep -c 'source.*\.zsh"' "$REPO_ROOT/home/dot_zshrc"
+  [ "$output" -ge 4 ]
+}
+
 # --- setup scripts ---
 
 @test "home/run_once_install-packages.sh exists" {
