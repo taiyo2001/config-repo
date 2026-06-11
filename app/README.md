@@ -11,17 +11,3 @@
 > **Note:** 現在はメインターミナルとして [cmux](https://www.cmux.dev/) を使用。iTerm2 設定は参考として保持。
 
 [reference: BetterTouchTool](https://webrandum.net/bettertouchtool-export-import/)
-
-### tpm (Tmux Plugin Manager)
-tpmを導入
-```
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-tpm管理のプラグインをインストール
-
-tmux内で以下を実行
-```
-pfx + I
-```
-参考：[document](https://github.com/tmux-plugins/tpm)
