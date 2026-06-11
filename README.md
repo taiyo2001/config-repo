@@ -24,15 +24,10 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
     </tr>
   </thead>
   <tbody>
-    <tr><td>dotfiles 管理</td><td><a href="https://www.chezmoi.io/">chezmoi</a></td></tr>
-    <tr><td>シークレット管理</td><td><a href="https://developer.1password.com/docs/cli/">1Password CLI</a></td></tr>
-    <tr><td>バージョン管理</td><td><a href="https://mise.jdx.dev/">mise</a></td></tr>
-    <tr><td>パッケージ管理</td><td><a href="https://brew.sh/">Homebrew</a></td></tr>
-    <tr><td>シェル</td><td>zsh + <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> + <a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a></td></tr>
-    <tr><td>プロンプト</td><td><a href="https://starship.rs/">Starship</a></td></tr>
-    <tr><td>エディタ</td><td><a href="https://neovim.io/">Neovim</a></td></tr>
-    <tr><td>ターミナルマルチプレクサ</td><td><a href="https://github.com/tmux/tmux">tmux</a></td></tr>
-    <tr><td>Git フック</td><td><a href="https://github.com/evilmartians/lefthook">lefthook</a></td></tr>
+    <tr><td>環境管理</td><td><a href="https://www.chezmoi.io/">chezmoi</a> · <a href="https://brew.sh/">Homebrew</a> · <a href="https://mise.jdx.dev/">mise</a> · <a href="https://developer.1password.com/docs/cli/">1Password CLI</a></td></tr>
+    <tr><td>シェル</td><td>zsh + <a href="https://sheldon.cli.rs/">Sheldon</a> · <a href="https://starship.rs/">Starship</a> · <a href="https://atuin.sh/">atuin</a> · <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> · <a href="https://github.com/sharkdp/fd">fd</a> + <a href="https://github.com/junegunn/fzf">fzf</a></td></tr>
+    <tr><td>開発環境</td><td><a href="https://neovim.io/">Neovim</a> · <a href="https://github.com/tmux/tmux">tmux</a> · <a href="https://www.cmux.dev/">cmux</a></td></tr>
+    <tr><td>Git</td><td><a href="https://github.com/evilmartians/lefthook">lefthook</a></td></tr>
   </tbody>
 </table>
 
@@ -48,6 +43,7 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
   <tbody>
     <tr><td><code>home/</code></td><td>chezmoi 管理の dotfiles（<code>dot_*</code> / <code>run_*</code>）</td></tr>
     <tr><td><code>home/dot_zsh/</code></td><td>zsh モジュール（exports / aliases / functions / completions）</td></tr>
+    <tr><td><code>home/dot_config/sheldon/</code></td><td>Sheldon プラグイン設定（<code>plugins.toml</code>）</td></tr>
     <tr><td><code>app/</code></td><td>アプリケーション別セットアップ手順</td></tr>
     <tr><td><code>tests/</code></td><td>Bats スモークテスト</td></tr>
   </tbody>

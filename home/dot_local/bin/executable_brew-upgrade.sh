@@ -14,6 +14,8 @@ echo "=== $(date '+%Y-%m-%d %H:%M:%S') ==="
 count=$("$BREW" outdated --formula | wc -l | tr -d ' ')
 "$BREW" upgrade
 
+sheldon lock --update 2>> "$LOG"
+
 if [[ "$count" -gt 0 ]]; then
   "$NOTIFIER" -title "Homebrew" -message "${count} 個のパッケージを更新しました" -sound default
 else

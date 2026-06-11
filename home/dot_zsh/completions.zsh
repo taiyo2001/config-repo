@@ -4,6 +4,12 @@ zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':completion:*' recent-dirs-insert always
 
+# Completion appearance
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}No matches%f'
+
 FPATH="$BREW_PREFIX/share/zsh/site-functions:$FPATH"
 FPATH="$BREW_PREFIX/share/zsh-completions:$FPATH"
 
