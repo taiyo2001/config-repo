@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781167899347,
+  "lastUpdate": 1781189625470,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -260,6 +260,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 40.03,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e5480a40cb8e5fcd4f8d219930aa6c42544a1315",
+          "message": "feat: Sheldon・atuin・zoxide でzsh環境をモダン化 (#19)\n\n* feat: Sheldon・atuin・zoxide でzsh環境をモダン化\n\n- Sheldon（Rust製プラグインマネージャー）を導入し、zsh-autosuggestions・zsh-syntax-highlighting・zsh-history-substring-search をTOML管理に移管\n- Brewfile から zsh-autosuggestions・zsh-syntax-highlighting・z を削除し sheldon・atuin・zoxide・fd を追加\n- atuin を導入し ^R 履歴検索を完全置換（fzf-select-history はコメントアウトして保持）\n- zoxide を導入し z.sh を置き換え\n- fzf 公式キーバインドを有効化（^T: ファイル検索・Alt+C: ディレクトリ移動）\n- FZF_DEFAULT_COMMAND を fd ベースに変更（.gitignore を尊重・高速化）\n- HISTFILE・HISTSIZE・setopt によるhistory設定を強化\n- Completion スタイルを充実（大文字小文字無視・メニュー選択・色付け）\n- fzf-cdr のキーバインドバグを修正（'cdr' → '^f'）\n- brew-upgrade.sh に sheldon lock --update を追加し自動アップグレードに対応\n\nCloses #18\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: README の技術スタック・構成表を更新\n\nSheldon・atuin・zoxide・fd 導入に合わせてツール一覧と構成表を更新。\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* fix: shfmt が解釈できない zsh 固有の list-colors 行を削除\n\n${(s.:.)LS_COLORS} は zsh 固有の parameter expansion で CI の shfmt チェックが失敗するため削除。macOS では LS_COLORS がデフォルト未設定のため実質的な影響なし。\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: 技術スタック表をグループ化・cmux を追加\n\n12行の縦長テーブルを4行のグループ化レイアウトに整理。\n環境管理・シェル・開発環境・Git の4カテゴリに統合し、cmux を開発環境に追加。\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T23:53:08+09:00",
+          "tree_id": "e5f39c9982f0e0f3569adf08c3cfd47e1e3303ef",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/e5480a40cb8e5fcd4f8d219930aa6c42544a1315"
+        },
+        "date": 1781189624290,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 62.38,
             "unit": "ms"
           }
         ]
