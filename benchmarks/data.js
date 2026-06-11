@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781149105852,
+  "lastUpdate": 1781161763095,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -144,6 +144,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 39.48,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "76639cb0a50953e5727b1411250a2b20f5c96f80",
+          "message": "docs: README 充実化・.chezmoiversion 追加 (#14)\n\n- バッジ（CI・chezmoi・Zsh Benchmark）を冒頭に追加\n- 概要文と技術スタック表を追加\n- .chezmoiversion に v2.70.5 を設定（最低バージョン要件を明示）\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T16:08:55+09:00",
+          "tree_id": "0442c2b3677c51ec2e1f5b5a49dfe5e83dfd7b4b",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/76639cb0a50953e5727b1411250a2b20f5c96f80"
+        },
+        "date": 1781161761302,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 38.59,
             "unit": "ms"
           }
         ]
