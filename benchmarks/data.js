@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781191710474,
+  "lastUpdate": 1781192187592,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -347,6 +347,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 41.33,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "taiyo2778@gmail.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "distinct": true,
+          "id": "d0c84f3ceebad27a5550ef757957c497964216f6",
+          "message": "docs: アプリ関連の表記を「アプリ設定のインポート」に統一\n\n- 構成テーブルの app/ 行にアンカーリンクを追加\n- 「アプリケーション別セットアップ手順」「アプリケーションごとのセットアップ」「アプリケーションごとのセットアップ項目」を統一\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-12T00:35:47+09:00",
+          "tree_id": "9c02c0b92aff3f0819c4aad2ede4ac67050f324a",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/d0c84f3ceebad27a5550ef757957c497964216f6"
+        },
+        "date": 1781192186453,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 36.15,
             "unit": "ms"
           }
         ]
