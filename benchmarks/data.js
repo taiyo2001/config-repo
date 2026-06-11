@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781161763095,
+  "lastUpdate": 1781163484930,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -173,6 +173,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 38.59,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d8cf015003e1545b46552b44d41ef1af9647e40e",
+          "message": "docs: README 全面改善・macOS 設定に確認プロンプト追加 (#15)\n\n* docs: スクリーンショット追加・README レイアウト改善\n\n- docs/screenshot.png を追加\n- タイトルに 🏠 絵文字を付けて中央寄せ\n- バッジ・概要・スクリーンショットを div[align=center] で中央寄せ\n- 技術スタック・構成テーブルを HTML table[width=100%] に変更\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: README 全面改善・macOS 設定に確認プロンプト追加\n\n- スクリーンショット追加・タイトルと冒頭を中央寄せ\n- バッジ・技術スタック・構成・1Password テーブルを全幅 HTML に変更\n- セットアップ手順を新規 Mac から始められる最小ステップに整理\n  - Homebrew インストールをステップ1に追加\n  - make・1password（cask）を依存に追加、不要な brew install を削減\n  - brew bundle は chezmoi apply 経由で自動実行されるためステップから削除\n  - lefthook install は make setup/apply で自動実行される旨を明記\n- macOS デフォルト設定スクリプトに yes/no 確認プロンプトを追加\n- Makefile から format/fix・format/check を削除（ci/local に統合）\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T16:37:34+09:00",
+          "tree_id": "d35ec6a36b01d0a5460e6110afbc4788952ad969",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/d8cf015003e1545b46552b44d41ef1af9647e40e"
+        },
+        "date": 1781163483461,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 45.17,
             "unit": "ms"
           }
         ]
