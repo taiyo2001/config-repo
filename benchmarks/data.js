@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781163484930,
+  "lastUpdate": 1781165791675,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -202,6 +202,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 45.17,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9e9f7e1644d8dc87f70672e84bf1413e14fb7e78",
+          "message": "chore: リポジトリ整理・Docker サンドボックス環境整備 (#16)\n\n* chore: find_variables.sh・utils/ を削除\n\n$${...} 変数が存在しないことが確認済みのため、チェックスクリプト自体が不要となった。\n- find_variables.sh を削除\n- utils/colors.sh（find_variables.sh からのみ参照）を削除\n- Makefile から ci/local の find_variables 呼び出しと setup/check ターゲットを削除\n- lefthook.yml から template-vars フックを削除・shellcheck の ignore_paths から utils を削除\n- push_ci.yml から check-template-vars ジョブを削除・shellcheck の ignore_paths から utils を削除\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* chore: Docker 環境整備・tmux 重複削除・ci/local 簡略化\n\nDocker:\n- Ubuntu 22.04 に更新\n- chezmoi・mise・starship・direnv をインストール\n- zsh プラグインを /opt/homebrew 配下に配置（macOS パスと一致させる）\n- mock op コマンドを追加（1Password なしで chezmoi apply を通す）\n- chezmoi.toml を事前生成（promptStringOnce をスキップ）\n- run_once_install-packages.sh に Docker 検出を追加（/.dockerenv でスキップ）\n- compose.yml を整理（stdin_open 追加・サービス名統一）\n- Makefile の docker ターゲットを整理（docker/build・docker/down 追加、コンテナ名修正）\n\n整理:\n- dot_tmux.conf の @prefix_highlight_* 重複設定を削除\n- make ci/local を lefthook run pre-push に簡略化（lefthook が single source of truth）\n- completions.zsh の git gtr 補完に command -v ガードを追加\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: README 更新（サンドボックスセクション・Note 文言修正）\n\n- Note 警告文を「サンドボックス環境で試せる」旨のリンクに変更\n- 「動作確認用のDocker環境」→「サンドボックス環境（Docker）」にリネーム\n- Docker セクションを充実化（できること・スキップされる処理を明記）\n- CI セクションの説明から削除済みの「テンプレート変数チェック」を削除\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T17:15:54+09:00",
+          "tree_id": "585b3e8401dec1531955df4f16001f36866ee9d1",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/9e9f7e1644d8dc87f70672e84bf1413e14fb7e78"
+        },
+        "date": 1781165789386,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 60.88,
             "unit": "ms"
           }
         ]
