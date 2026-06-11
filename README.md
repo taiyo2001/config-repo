@@ -1,6 +1,26 @@
 # dotfiles
 
-[reference: setup](https://qiita.com/taiyo2001/items/2a5869f4f3b8b7aba081) | [Zsh Startup Benchmark](https://taiyo2001.github.io/dotfiles/)
+[![CI](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml/badge.svg)](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml)
+[![managed by chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-blue)](https://www.chezmoi.io/)
+[![Zsh Startup Benchmark](https://img.shields.io/badge/zsh%20benchmark-view-green)](https://taiyo2001.github.io/dotfiles/)
+
+macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](https://developer.1password.com/docs/cli/) で機密情報を安全に管理し、[mise](https://mise.jdx.dev/) でランタイムバージョンを統一。個人 / 仕事マシンの分岐にも対応。
+
+> **Note:** これらの設定は自分の環境に合わせたものです。盲目的に使わず、内容を確認してから適用してください。
+
+## 技術スタック
+
+| カテゴリ | ツール |
+|---|---|
+| dotfiles 管理 | [chezmoi](https://www.chezmoi.io/) |
+| シークレット管理 | [1Password CLI](https://developer.1password.com/docs/cli/) |
+| バージョン管理 | [mise](https://mise.jdx.dev/) |
+| パッケージ管理 | [Homebrew](https://brew.sh/) |
+| シェル | zsh + [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) + [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) |
+| プロンプト | [Starship](https://starship.rs/) |
+| エディタ | [Neovim](https://neovim.io/) |
+| ターミナルマルチプレクサ | [tmux](https://github.com/tmux/tmux) |
+| Git フック | [lefthook](https://github.com/evilmartians/lefthook) |
 
 ## 構成
 
