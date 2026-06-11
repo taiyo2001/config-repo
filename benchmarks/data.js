@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781115233115,
+  "lastUpdate": 1781145257869,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -86,6 +86,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 278.55,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2407feac8fbfee2e58a0eb6666eb23a49b509ccb",
+          "message": "feat: zsh 環境を全面刷新（モジュール化・最適化・mise 移行・lefthook） (#12)\n\n* feat: zshrc をモジュール化し起動速度を最適化\n\nモジュール化（dot_zsh/ 以下に分割）:\n- exports.zsh: 環境変数・PATH\n- aliases.zsh: エイリアス\n- functions.zsh: 関数・fzf キーバインド\n- completions.zsh: 補完設定・compinit\n\n起動速度最適化:\n- BREW_PREFIX=\"/opt/homebrew\" を変数化し brew --prefix 呼び出しを削除\n- compinit を 24h キャッシュ化（.zcompdump が新鮮なら compinit -C）\n- kubectl completion をファイルキャッシュ化（~/.cache/、週次更新）\n\nCloses #8\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* feat: lefthook で pre-push ローカル CI を設定\n\nプッシュ前に以下を自動実行してリモート CI での失敗を防ぐ：\n- shfmt フォーマットチェック\n- shellcheck\n- テンプレート変数チェック\n- Bats スモークテスト\n\nまた make ci/local で手動実行も可能。\nsetup/apply 時に lefthook install を自動実行するよう変更。\nbats-core を Brewfile に追加。\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: README を最新の構成・CI フローに合わせて更新\n\n- 構成表に home/, home/dot_zsh/, tests/ を追加\n- setup/apply を make コマンドに変更（lefthook install を含む）\n- CI / 品質チェックセクションを追加（ci/local, pre-push フック, format）\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* style: shfmt フォーマットを修正（リダイレクトのスペース）\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* docs: 依存ツールに bats-core と lefthook を追加\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* chore: zsh の不要な設定を削除\n\n- zsh-git-prompt, vcs_info, PS1, git_prompt_info を削除\n  （starship が上書きするため完全に冗長だった）\n- ANDROID_HOME と Android の PATH を削除\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n* feat: asdf から mise へ完全移行\n\n- dot_zshrc: . ~/.asdf/asdf.sh → eval \"$(mise activate zsh)\"\n- completions.zsh: asdf which terraform → mise which terraform\n- dot_asdfrc を削除（legacy_version_file は mise のデフォルトで有効）\n- Brewfile から zsh-git-prompt を削除\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-11T11:33:38+09:00",
+          "tree_id": "7e73a0d07f3a3fe5874942f56b60e55c36af20b4",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/2407feac8fbfee2e58a0eb6666eb23a49b509ccb"
+        },
+        "date": 1781145256109,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 97.24,
             "unit": "ms"
           }
         ]
