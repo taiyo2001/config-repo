@@ -1,4 +1,6 @@
-# dotfiles
+<div align="center">
+
+# 🏠 dotfiles
 
 [![CI](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml/badge.svg)](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml)
 [![managed by chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-blue)](https://www.chezmoi.io/)
@@ -8,28 +10,48 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
 
 > **Note:** これらの設定は自分の環境に合わせたものです。盲目的に使わず、内容を確認してから適用してください。
 
+![screenshot](./docs/screenshot.png)
+
+</div>
+
 ## 技術スタック
 
-| カテゴリ | ツール |
-|---|---|
-| dotfiles 管理 | [chezmoi](https://www.chezmoi.io/) |
-| シークレット管理 | [1Password CLI](https://developer.1password.com/docs/cli/) |
-| バージョン管理 | [mise](https://mise.jdx.dev/) |
-| パッケージ管理 | [Homebrew](https://brew.sh/) |
-| シェル | zsh + [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) + [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) |
-| プロンプト | [Starship](https://starship.rs/) |
-| エディタ | [Neovim](https://neovim.io/) |
-| ターミナルマルチプレクサ | [tmux](https://github.com/tmux/tmux) |
-| Git フック | [lefthook](https://github.com/evilmartians/lefthook) |
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left">カテゴリ</th>
+      <th align="left">ツール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>dotfiles 管理</td><td><a href="https://www.chezmoi.io/">chezmoi</a></td></tr>
+    <tr><td>シークレット管理</td><td><a href="https://developer.1password.com/docs/cli/">1Password CLI</a></td></tr>
+    <tr><td>バージョン管理</td><td><a href="https://mise.jdx.dev/">mise</a></td></tr>
+    <tr><td>パッケージ管理</td><td><a href="https://brew.sh/">Homebrew</a></td></tr>
+    <tr><td>シェル</td><td>zsh + <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> + <a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a></td></tr>
+    <tr><td>プロンプト</td><td><a href="https://starship.rs/">Starship</a></td></tr>
+    <tr><td>エディタ</td><td><a href="https://neovim.io/">Neovim</a></td></tr>
+    <tr><td>ターミナルマルチプレクサ</td><td><a href="https://github.com/tmux/tmux">tmux</a></td></tr>
+    <tr><td>Git フック</td><td><a href="https://github.com/evilmartians/lefthook">lefthook</a></td></tr>
+  </tbody>
+</table>
 
 ## 構成
 
-| ディレクトリ | 内容 |
-|---|---|
-| `home/` | chezmoi 管理の dotfiles（`dot_*` / `run_*`） |
-| `home/dot_zsh/` | zsh モジュール（exports / aliases / functions / completions） |
-| `app/` | アプリケーション別セットアップ手順 |
-| `tests/` | Bats スモークテスト |
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left">ディレクトリ</th>
+      <th align="left">内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>home/</code></td><td>chezmoi 管理の dotfiles（<code>dot_*</code> / <code>run_*</code>）</td></tr>
+    <tr><td><code>home/dot_zsh/</code></td><td>zsh モジュール（exports / aliases / functions / completions）</td></tr>
+    <tr><td><code>app/</code></td><td>アプリケーション別セットアップ手順</td></tr>
+    <tr><td><code>tests/</code></td><td>Bats スモークテスト</td></tr>
+  </tbody>
+</table>
 
 ## セットアップ（新規マシン）
 
