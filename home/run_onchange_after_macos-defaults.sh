@@ -6,6 +6,13 @@ if [[ "$(uname)" != "Darwin" ]]; then
   exit 0
 fi
 
+echo "Finder・Dock などの macOS システム設定を変更します。"
+read -rp "適用しますか？ [y/N]: " confirm
+if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+  echo "macOS 設定の適用をスキップしました。"
+  exit 0
+fi
+
 echo "Applying macOS defaults..."
 
 ###############################################################################

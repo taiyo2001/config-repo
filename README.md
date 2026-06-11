@@ -55,21 +55,32 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
 
 ## セットアップ（新規マシン）
 
-### 1. 依存ツールのインストール
+### 1. Homebrew をインストール
 
 ```sh
-brew install chezmoi 1password-cli shellcheck shfmt bats-core lefthook make gcc
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-### 2. 1Password CLIにサインイン
+> Xcode Command Line Tools（git 含む）も同時にインストールされます。
 
-1Passwordアプリ → **設定** → **開発者** → **「1Password CLIと統合」をオン** にしてから：
+### 2. chezmoi・1Password・make をインストール
+
+```sh
+brew install chezmoi make
+brew install --cask 1password 1password-cli
+```
+
+### 3. 1Password CLI にサインイン
+
+1. 1Password アプリを起動してアカウントにサインイン
+2. **設定** → **開発者** → **「1Password CLIと統合」をオン**
+3. ターミナルで認証：
 
 ```sh
 eval $(op signin)
 ```
 
-### 3. dotfilesリポジトリをクローン
+### 4. dotfiles リポジトリをクローン
 
 ```sh
 chezmoi init taiyo2001
@@ -77,7 +88,7 @@ chezmoi init taiyo2001
 
 リポジトリが `~/.local/share/chezmoi/` にクローンされます（この時点ではまだ適用しません）。
 
-### 4. 1Passwordアイテムをセットアップ
+### 5. 1Password アイテムをセットアップ
 
 `Private` vault に `dotfiles` アイテムを作成します：
 
@@ -87,25 +98,33 @@ make -C ~/.local/share/chezmoi op/setup
 
 以下のフィールドへの入力を求められます：
 
-| フィールド名 | 内容 |
-|---|---|
-| `git config email` | git のメールアドレス |
-| `git config signingkey` | git 署名キー（GPG key ID）|
-| `claude code org_uuid` | Claude Code org UUID |
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left">フィールド名</th>
+      <th align="left">内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>git config email</code></td><td>git のメールアドレス</td></tr>
+    <tr><td><code>git config signingkey</code></td><td>git 署名キー（GPG key ID）</td></tr>
+    <tr><td><code>claude code org_uuid</code></td><td>Claude Code org UUID</td></tr>
+  </tbody>
+</table>
 
-### 5. dotfilesを適用
+### 6. dotfiles を適用
+
+> **Warning:** Finder・Dock などの **macOS システム設定が変更されます。** 各ステップで yes/no を確認してから適用してください。
 
 ```sh
-make setup/apply
+make -C ~/.local/share/chezmoi setup/apply
 ```
 
-`chezmoi apply` の実行後、`lefthook install` で Git フックも自動セットアップされます。
+以下が順に実行されます（各ステップで確認プロンプトあり）：
 
-### 6. Brewfileからアプリをインストール
-
-```sh
-brew bundle --global
-```
+- Homebrew パッケージ（Brewfile）のインストール
+- macOS システム設定の変更
+- `lefthook install` による Git フックのセットアップ
 
 ### アプリケーションごとのセットアップ
 
@@ -151,15 +170,5 @@ shfmt・shellcheck・テンプレート変数チェック・Bats スモークテ
 ### pre-push フック
 
 `git push` 時に自動で `make ci/local` と同等のチェックが実行されます（lefthook）。
-初回セットアップ後に一度だけ以下を実行してください：
+`make setup/apply` 実行時に `lefthook install` も同時に行われるため、追加の作業は不要です。
 
-```sh
-lefthook install
-```
-
-### フォーマット
-
-```sh
-make format/fix    # 自動修正
-make format/check  # 確認のみ
-```
