@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# Docker 環境ではスキップ
-if [[ -f /.dockerenv ]]; then
-  echo "Docker 環境のためパッケージインストールをスキップします。"
+# Docker / CI 環境ではスキップ
+if [[ -f /.dockerenv ]] || [[ "${CI:-}" == "true" ]]; then
+  echo "Docker/CI 環境のためパッケージインストールをスキップします。"
   exit 0
 fi
 
