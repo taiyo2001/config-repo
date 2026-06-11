@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1781189625470,
+  "lastUpdate": 1781190866645,
   "repoUrl": "https://github.com/taiyo2001/dotfiles",
   "entries": {
     "Zsh Startup Time": [
@@ -289,6 +289,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "zsh startup",
             "value": 62.38,
+            "unit": "ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "100068523+taiyo2001@users.noreply.github.com",
+            "name": "taiyo2001",
+            "username": "taiyo2001"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "68a5bdff19a7635a55afe2d0c9596ea8fbe57580",
+          "message": "feat: atuin インライン表示設定・app/README 整理 (#20)\n\n- atuin を compact スタイル・inline_height=10 に設定しプロンプトを維持したままインライン表示に変更\n- atuin config を chezmoi 管理に追加\n- app/README から Git スニペット項目を削除\n- iTerm2 項目に cmux を使用中である旨の注記を追加\n\nCo-authored-by: Claude Sonnet 4.6 <noreply@anthropic.com>",
+          "timestamp": "2026-06-12T00:13:43+09:00",
+          "tree_id": "e4c6cd6f9f9057ac0cf52c8aef15ddf070260a87",
+          "url": "https://github.com/taiyo2001/dotfiles/commit/68a5bdff19a7635a55afe2d0c9596ea8fbe57580"
+        },
+        "date": 1781190865023,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "zsh startup",
+            "value": 49.15,
             "unit": "ms"
           }
         ]
