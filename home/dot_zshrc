@@ -11,7 +11,7 @@ source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Tools
-. "$HOME/.asdf/asdf.sh"
+eval "$(mise activate zsh)"
 test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh"
 . "$BREW_PREFIX/etc/profile.d/z.sh"
 

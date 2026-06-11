@@ -28,7 +28,7 @@ eval "$(git gtr completion zsh)"
 
 # terraform autocomplete
 autoload -U +X bashcompinit && bashcompinit
-terraform_path=$(asdf which terraform 2> /dev/null)
+terraform_path=$(mise which terraform 2> /dev/null)
 if [[ -n "$terraform_path" ]]; then
   complete -o nospace -C "$terraform_path" terraform
 fi
