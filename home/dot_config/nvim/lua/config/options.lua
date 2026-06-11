@@ -19,6 +19,16 @@ vim.opt.mouse = "a"
 -- Allow the cursor to move one position past the last character (VSCode-like)
 vim.opt.virtualedit = "onemore"
 
+-- Filetype detection for extensions not recognized by default
+vim.filetype.add({
+  extension = {
+    tmpl = "gotmpl", -- fallback: plain .tmpl → gotmpl
+  },
+  filename = {
+    Brewfile = "ruby",
+  },
+})
+
 -- Disable diff linematch globally so deletions group together (no interleaving).
 -- Default in recent Neovim contains linematch:60 which pairs similar lines.
 vim.opt.diffopt:remove("linematch:60")

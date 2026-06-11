@@ -32,8 +32,8 @@ REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
   [ -f "$REPO_ROOT/home/dot_gitconfig.tmpl" ]
 }
 
-@test "home/dot_Brewfile exists" {
-  [ -f "$REPO_ROOT/home/dot_Brewfile" ]
+@test "home/dot_Brewfile.tmpl exists" {
+  [ -f "$REPO_ROOT/home/dot_Brewfile.tmpl" ]
 }
 
 @test "home/dot_tmux.conf exists" {

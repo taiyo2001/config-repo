@@ -1,6 +1,24 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
+-- chezmoi .tmpl files: highlight as the base language
+local chezmoi_ft = vim.api.nvim_create_augroup("ChezmoiFiletype", { clear = true })
+local tmpl_map = {
+  { pattern = { "*.toml.tmpl" }, ft = "toml" },
+  { pattern = { "*.yaml.tmpl", "*.yml.tmpl" }, ft = "yaml" },
+  { pattern = { "*.json.tmpl" }, ft = "json" },
+  { pattern = { "*.sh.tmpl" }, ft = "sh" },
+  { pattern = { "Dockerfile.tmpl", "dockerfile.tmpl" }, ft = "dockerfile" },
+  { pattern = { "Brewfile.tmpl", "dot_Brewfile.tmpl" }, ft = "ruby" },
+}
+for _, entry in ipairs(tmpl_map) do
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    group = chezmoi_ft,
+    pattern = entry.pattern,
+    callback = function() vim.bo.filetype = entry.ft end,
+  })
+end
+
 -- When launching `nvim <dir>`, prefer the git_status source over filesystem
 -- (LazyVim's netrw hijack opens "filesystem" explicitly, bypassing default_source).
 -- Runs both on a delayed VimEnter (no-session case) and after persistence.load() finishes.
