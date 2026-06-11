@@ -1,3 +1,11 @@
+{{- $machineType := promptStringOnce . "machineType" "Machine type (personal/work)" -}}
+{{- $fullInstall := promptStringOnce . "fullInstall" "Full install? (true/false)" -}}
+
+[data]
+    personal    = {{ eq $machineType "personal" }}
+    work        = {{ eq $machineType "work" }}
+    fullInstall = {{ eq $fullInstall "true" }}
+
 [onepassword]
     command = "op"
 
