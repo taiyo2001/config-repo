@@ -46,7 +46,7 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
     <tr><td><code>home/</code></td><td>chezmoi 管理の dotfiles（<code>dot_*</code> / <code>run_*</code>）</td></tr>
     <tr><td><code>home/dot_zsh/</code></td><td>zsh モジュール（exports / aliases / functions / completions）</td></tr>
     <tr><td><code>home/dot_config/sheldon/</code></td><td>Sheldon プラグイン設定（<code>plugins.toml</code>）</td></tr>
-    <tr><td><code>app/</code></td><td>アプリケーション別セットアップ手順</td></tr>
+    <tr><td><code>app/</code></td><td><a href="#アプリ設定のインポート">アプリ設定のインポート</a></td></tr>
     <tr><td><code>tests/</code></td><td>Bats スモークテスト</td></tr>
   </tbody>
 </table>
@@ -125,7 +125,7 @@ make -C ~/.local/share/chezmoi setup/apply
 - `lefthook install` による Git フックのセットアップ
 - tpm（Tmux Plugin Manager）および tmux プラグインのインストール
 
-### アプリケーションごとのセットアップ
+### アプリ設定のインポート
 
 [こちら](./app/README.md)を参照
 
