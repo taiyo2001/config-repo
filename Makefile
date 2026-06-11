@@ -14,12 +14,6 @@ setup/check:
 op/setup:
 	bash setup_1password.sh
 
-format/fix:
-	shfmt -i 2 -ci -sr -w .
-
-format/check:
-	shfmt -i 2 -ci -sr -d .
-
 docker/setup:
 	docker compose up --build
 
