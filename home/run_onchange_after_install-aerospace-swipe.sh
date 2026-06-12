@@ -7,7 +7,7 @@ if [[ "$(uname)" != "Darwin" ]]; then
   exit 0
 fi
 
-if ! command -v make >/dev/null 2>&1 || ! command -v ghq >/dev/null 2>&1; then
+if ! command -v make > /dev/null 2>&1 || ! command -v ghq > /dev/null 2>&1; then
   echo "make / ghq が無いため aerospace-swipe のインストールをスキップしました。"
   exit 0
 fi
@@ -25,7 +25,7 @@ git -C "$src" checkout --quiet "$rev"
 
 # ad-hoc 署名のため再ビルドのたびに署名が変わり、launchctl load が
 # 二重登録エラーになる。先に unload してから make install で登録し直す
-launchctl unload "$HOME/Library/LaunchAgents/com.acsandmann.swipe.plist" 2>/dev/null || true
+launchctl unload "$HOME/Library/LaunchAgents/com.acsandmann.swipe.plist" 2> /dev/null || true
 (cd "$src" && make install)
 
 echo "aerospace-swipe をインストールしました。"
