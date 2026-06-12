@@ -31,7 +31,7 @@ jobs:
               - 'home/dot_config/sheldon/**'
               - 'home/dot_config/starship.toml'
             terraform:
-              - 'terraform/**/*.tf'
+              - '**/*.tf'
 
   check-format:
     name: Shell Script Formatting
