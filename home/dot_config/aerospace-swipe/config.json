@@ -1,0 +1,8 @@
+{
+  "natural_swipe": false,
+  "haptic": true,
+  "distance_pct": 0.02,
+  "velocity_pct": 0.05,
+  "settle_factor": 1.0,
+  "swipe_tolerance": 5
+}

@@ -1,5 +1,4 @@
 #!/bin/bash
-# Cycle through non-empty workspaces on the focused monitor.
 # Usage: ws-nav.sh next | prev
 
 set -euo pipefail

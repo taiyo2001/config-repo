@@ -27,7 +27,7 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
     <tr><td>環境管理</td><td><a href="https://www.chezmoi.io/">chezmoi</a> · <a href="https://brew.sh/">Homebrew</a> · <a href="https://mise.jdx.dev/">mise</a> · <a href="https://developer.1password.com/docs/cli/">1Password CLI</a></td></tr>
     <tr><td>シェル</td><td>zsh + <a href="https://sheldon.cli.rs/">Sheldon</a> · <a href="https://starship.rs/">Starship</a> · <a href="https://atuin.sh/">atuin</a> · <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a> · <a href="https://github.com/sharkdp/fd">fd</a> + <a href="https://github.com/junegunn/fzf">fzf</a></td></tr>
     <tr><td>開発環境</td><td><a href="https://neovim.io/">Neovim</a> · <a href="https://github.com/tmux/tmux">tmux</a> + <a href="https://github.com/tmux-plugins/tpm">tpm</a> · <a href="https://www.cmux.dev/">cmux</a></td></tr>
-    <tr><td>ウィンドウ管理</td><td><a href="https://nikitabobko.github.io/AeroSpace/">AeroSpace</a> + <a href="https://github.com/acsandmann/aerospace-swipe">aerospace-swipe</a> (トラックパッドでワークスペース切替)</td></tr>
+    <tr><td>ウィンドウ管理</td><td><a href="https://nikitabobko.github.io/AeroSpace/">AeroSpace</a> + <a href="https://github.com/taiyo2001/aerospace-swipe">aerospace-swipe</a> (3本指スワイプでワークスペース切替) · <a href="https://www.hammerspoon.org/">Hammerspoon</a></td></tr>
     <tr><td>Git</td><td><a href="https://github.com/evilmartians/lefthook">lefthook</a></td></tr>
     <tr><td>インフラ</td><td><a href="https://www.terraform.io/">Terraform</a> + <a href="https://app.terraform.io/">HCP Terraform</a></td></tr>
   </tbody>
