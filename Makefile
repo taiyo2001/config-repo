@@ -2,6 +2,15 @@ setup/apply:
 	chezmoi apply
 	lefthook install
 
+tf/init:
+	cd terraform && op run --env-file=.env.tpl -- terraform init
+
+tf/plan:
+	cd terraform && op run --env-file=.env.tpl -- terraform plan
+
+tf/apply:
+	cd terraform && op run --env-file=.env.tpl -- terraform apply
+
 ci/local:
 	lefthook run pre-push
 
