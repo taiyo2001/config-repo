@@ -15,10 +15,9 @@ jobs:
       shell: ${{ steps.filter.outputs.shell }}
       dotfiles: ${{ steps.filter.outputs.dotfiles }}
       zsh: ${{ steps.filter.outputs.zsh }}
+      terraform: ${{ steps.filter.outputs.terraform }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: dorny/paths-filter@v3
         id: filter
