@@ -9,6 +9,8 @@ jobs:
   changes:
     name: Detect Changed Files
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       shell: ${{ steps.filter.outputs.shell }}
       dotfiles: ${{ steps.filter.outputs.dotfiles }}
