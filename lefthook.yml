@@ -11,3 +11,13 @@ pre-push:
     smoke-tests:
       name: Bats Smoke Tests
       run: bats tests/
+
+    terraform-fmt:
+      name: Terraform Format
+      glob: "terraform/*.tf"
+      run: terraform -chdir=terraform fmt -recursive
+
+    terraform-validate:
+      name: Terraform Validate
+      glob: "terraform/*.tf"
+      run: terraform -chdir=terraform validate

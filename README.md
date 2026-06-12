@@ -29,6 +29,7 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
     <tr><td>開発環境</td><td><a href="https://neovim.io/">Neovim</a> · <a href="https://github.com/tmux/tmux">tmux</a> + <a href="https://github.com/tmux-plugins/tpm">tpm</a> · <a href="https://www.cmux.dev/">cmux</a></td></tr>
     <tr><td>ウィンドウ管理</td><td><a href="https://nikitabobko.github.io/AeroSpace/">AeroSpace</a> + <a href="https://github.com/acsandmann/aerospace-swipe">aerospace-swipe</a> (トラックパッドでワークスペース切替)</td></tr>
     <tr><td>Git</td><td><a href="https://github.com/evilmartians/lefthook">lefthook</a></td></tr>
+    <tr><td>インフラ</td><td><a href="https://www.terraform.io/">Terraform</a> + <a href="https://app.terraform.io/">HCP Terraform</a></td></tr>
   </tbody>
 </table>
 
@@ -48,6 +49,7 @@ macOS 向け dotfiles。[chezmoi](https://www.chezmoi.io/) + [1Password CLI](htt
     <tr><td><code>home/dot_zsh/</code></td><td>zsh モジュール（exports / aliases / functions / completions）</td></tr>
     <tr><td><code>home/dot_config/sheldon/</code></td><td>Sheldon プラグイン設定（<code>plugins.toml</code>）</td></tr>
     <tr><td><code>app/</code></td><td><a href="#アプリ設定のインポート">アプリ設定のインポート</a></td></tr>
+    <tr><td><code>terraform/</code></td><td><a href="#インフラ設定">インフラ設定</a></td></tr>
     <tr><td><code>tests/</code></td><td>Bats スモークテスト</td></tr>
   </tbody>
 </table>
@@ -130,6 +132,10 @@ make -C ~/.local/share/chezmoi setup/apply
 
 [こちら](./app/README.md)を参照
 
+### インフラ設定
+
+[こちら](./terraform/README.md)を参照
+
 ---
 
 ## dotfilesの編集フロー
@@ -176,10 +182,9 @@ make docker/down     # コンテナを停止・削除
 make ci/local
 ```
 
-shfmt・shellcheck・Bats スモークテストを一括実行します。
+shfmt・shellcheck・Bats スモークテスト・Terraform fmt/validate を一括実行します。
 
 ### pre-push フック
 
 `git push` 時に自動で `make ci/local` と同等のチェックが実行されます（lefthook）。
 `make setup/apply` 実行時に `lefthook install` も同時に行われるため、追加の作業は不要です。
-

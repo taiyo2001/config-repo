@@ -1,0 +1,4 @@
+TF_TOKEN_app_terraform_io=op://Private/dotfiles/TF_TOKEN_app_terraform_io
+TF_VAR_github_app_id=op://Private/dotfiles/GITHUB_APP_ID
+TF_VAR_github_app_installation_id=op://Private/dotfiles/GITHUB_APP_INSTALLATION_ID
+TF_VAR_github_app_pem_file=op://Private/dotfiles/GITHUB_APP_PEM_FILE
