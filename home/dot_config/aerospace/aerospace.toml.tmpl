@@ -36,6 +36,10 @@ default-root-container-orientation = 'auto'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+# Keep WS F free of tiling: re-float its windows whenever F becomes focused,
+# which also catches windows manually moved into F (on-window-detected misses those).
+exec-on-workspace-change = ['/bin/bash', '{{ .chezmoi.homeDir }}/.config/aerospace/float-f.sh']
+
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
@@ -193,6 +197,9 @@ on-mode-changed = []
     alt-shift-x = 'move-node-to-workspace X'
     alt-shift-y = 'move-node-to-workspace Y'
     alt-shift-z = 'move-node-to-workspace Z'
+
+    alt-right = 'exec-and-forget {{ .chezmoi.homeDir }}/.config/aerospace/ws-nav.sh next'
+    alt-left  = 'exec-and-forget {{ .chezmoi.homeDir }}/.config/aerospace/ws-nav.sh prev'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'

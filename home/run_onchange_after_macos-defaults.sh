@@ -36,6 +36,14 @@ defaults write com.apple.dock autohide -bool false     # don't auto-hide
 defaults write com.apple.dock show-recents -bool false # hide recent apps section
 
 ###############################################################################
+# Mission Control / Displays
+###############################################################################
+# Dock/menu bar を主ディスプレイのみに表示するため "Displays have separate Spaces" を無効化。
+# AeroSpace のマルチモニタ運用で外部ディスプレイ側に Dock が出ないようにする。
+# (反映にはログアウト/再起動が必要)
+defaults write com.apple.spaces spans-displays -bool true
+
+###############################################################################
 # Screenshots
 ###############################################################################
 mkdir -p "$HOME/Desktop/screenshot"
