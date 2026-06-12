@@ -181,7 +181,7 @@ make docker/down     # コンテナを停止・削除
 make ci/local
 ```
 
-shfmt・shellcheck・Bats スモークテストを一括実行します。
+shfmt・shellcheck・Bats スモークテスト・Terraform fmt/validate を一括実行します。
 
 ### pre-push フック
 

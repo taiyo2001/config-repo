@@ -6,8 +6,37 @@ on:
   pull_request:
 
 jobs:
+  changes:
+    name: Detect Changed Files
+    runs-on: ubuntu-latest
+    outputs:
+      shell: ${{ steps.filter.outputs.shell }}
+      dotfiles: ${{ steps.filter.outputs.dotfiles }}
+      zsh: ${{ steps.filter.outputs.zsh }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            shell:
+              - '**/*.sh'
+            dotfiles:
+              - 'home/**'
+              - 'tests/**'
+            zsh:
+              - 'home/dot_zshrc'
+              - 'home/dot_zsh/**'
+              - 'home/dot_config/sheldon/**'
+              - 'home/dot_config/starship.toml'
+            terraform:
+              - 'terraform/**/*.tf'
+
   check-format:
     name: Shell Script Formatting
+    needs: changes
+    if: needs.changes.outputs.shell == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +49,8 @@ jobs:
 
   shellcheck:
     name: ShellCheck
+    needs: changes
+    if: needs.changes.outputs.shell == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +64,8 @@ jobs:
 
   bats-smoke-test:
     name: Bats Smoke Tests
+    needs: changes
+    if: needs.changes.outputs.dotfiles == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +78,8 @@ jobs:
 
   startup-benchmark:
     name: Zsh Startup Benchmark
+    needs: changes
+    if: github.ref == 'refs/heads/main' && needs.changes.outputs.zsh == 'true'
     runs-on: macos-latest
     permissions:
       contents: write
@@ -92,7 +127,6 @@ jobs:
           "
 
       - name: Store benchmark result
-        if: github.ref == 'refs/heads/main'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: Zsh Startup Time
@@ -105,6 +139,39 @@ jobs:
           alert-threshold: "150%"
           comment-on-alert: true
           fail-on-alert: false
+
+  terraform-fmt:
+    name: Terraform Format
+    needs: changes
+    if: needs.changes.outputs.terraform == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.6"
+
+      - name: Terraform Format Check
+        run: terraform -chdir=terraform fmt -check -recursive
+
+  terraform-validate:
+    name: Terraform Validate
+    needs: changes
+    if: needs.changes.outputs.terraform == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.15.6"
+
+      - name: Terraform Init
+        run: terraform -chdir=terraform init -backend=false
+
+      - name: Terraform Validate
+        run: terraform -chdir=terraform validate
 
   secret-scanning:
     name: Secret Scanning
