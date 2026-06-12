@@ -17,6 +17,8 @@ jobs:
       zsh: ${{ steps.filter.outputs.zsh }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: dorny/paths-filter@v3
         id: filter
