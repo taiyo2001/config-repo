@@ -32,8 +32,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show all file 
 ###############################################################################
 # Dock
 ###############################################################################
-defaults write com.apple.dock autohide -bool false     # don't auto-hide
-defaults write com.apple.dock show-recents -bool false # hide recent apps section
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 1000000
+defaults write com.apple.dock show-recents -bool false
 
 ###############################################################################
 # Mission Control / Displays

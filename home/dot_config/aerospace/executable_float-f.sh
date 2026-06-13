@@ -1,18 +1,19 @@
 #!/bin/bash
 set -euo pipefail
 
-# Toggle Dock visibility: show on workspace F, hide elsewhere.
-# Only restart Dock when the autohide state actually needs to change.
+# On workspace F: Dock appears on hover (delay=0).
+# Elsewhere: delay set to a large value so Dock never auto-shows.
+# autohide stays true always so no layout shift occurs on Dock restart.
+# killall runs in background immediately on switch to maximize warm-up time.
 if [[ "${AEROSPACE_FOCUSED_WORKSPACE:-}" == "F" ]]; then
-  desired_autohide=false
+  desired_delay=0
 else
-  desired_autohide=true
+  desired_delay=1000000
 fi
-current_autohide=$(defaults read com.apple.dock autohide 2> /dev/null || echo "0")
-[[ "$current_autohide" == "1" ]] && current_autohide=true || current_autohide=false
-if [[ "$current_autohide" != "$desired_autohide" ]]; then
-  defaults write com.apple.dock autohide -bool "$desired_autohide"
-  killall Dock
+current_delay=$(defaults read com.apple.dock autohide-delay 2> /dev/null || echo "-1")
+if [[ "$current_delay" != "$desired_delay" ]]; then
+  defaults write com.apple.dock autohide-delay -float "$desired_delay"
+  killall Dock &
 fi
 
 # 'on-window-detected if.workspace=F' only fires on window *detection*, not when
