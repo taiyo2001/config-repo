@@ -1,7 +1,6 @@
 tap "coderabbitai/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "manaflow-ai/cmux"
+tap "nikitabobko/tap"
 
 # ── Core ──────────────────────────────────────────────────────────
 brew "awscli"
@@ -43,14 +42,15 @@ cask "claude-code"
 cask "cmux"
 cask "docker-desktop"
 cask "font-hack-nerd-font"
+cask "hammerspoon"
 cask "karabiner-elements"
 cask "monitorcontrol"
+cask "nikitabobko/tap/aerospace"
 cask "raycast"
 
 # ── Personal ──────────────────────────────────────────────────────
 {{ if .personal -}}
 cask "bettertouchtool"
-cask "hammerspoon"
 cask "tableplus"
 {{ end -}}
 

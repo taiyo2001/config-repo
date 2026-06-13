@@ -36,6 +36,11 @@ defaults write com.apple.dock autohide -bool false     # don't auto-hide
 defaults write com.apple.dock show-recents -bool false # hide recent apps section
 
 ###############################################################################
+# Mission Control / Displays
+###############################################################################
+defaults write com.apple.spaces spans-displays -bool true
+
+###############################################################################
 # Screenshots
 ###############################################################################
 mkdir -p "$HOME/Desktop/screenshot"
