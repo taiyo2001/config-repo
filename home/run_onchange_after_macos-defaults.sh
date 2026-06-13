@@ -38,7 +38,7 @@ defaults write com.apple.dock show-recents -bool false # hide recent apps sectio
 ###############################################################################
 # Mission Control / Displays
 ###############################################################################
-defaults write com.apple.spaces spans-displays -bool true
+defaults write com.apple.spaces spans-displays -bool false
 
 ###############################################################################
 # Screenshots
