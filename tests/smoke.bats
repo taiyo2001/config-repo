@@ -77,12 +77,12 @@ REPO_ROOT="$(cd "$BATS_TEST_DIRNAME/.." && pwd)"
 
 # --- setup scripts ---
 
-@test "home/run_once_install-packages.sh exists" {
-  [ -f "$REPO_ROOT/home/run_once_install-packages.sh" ]
+@test "home/run_after_install-packages.sh exists" {
+  [ -f "$REPO_ROOT/home/run_after_install-packages.sh" ]
 }
 
-@test "home/run_onchange_after_macos-defaults.sh exists" {
-  [ -f "$REPO_ROOT/home/run_onchange_after_macos-defaults.sh" ]
+@test "home/run_after_macos-defaults.sh exists" {
+  [ -f "$REPO_ROOT/home/run_after_macos-defaults.sh" ]
 }
 
 # --- template integrity ---
