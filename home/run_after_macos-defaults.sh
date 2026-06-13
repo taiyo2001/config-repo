@@ -22,7 +22,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true        # show hidde
 defaults write com.apple.finder ShowPathbar -bool true              # show path bar
 defaults write com.apple.finder ShowStatusBar -bool true            # show status bar
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # default list view
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true  # full path in title bar
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool false # show folder name only in title bar
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" # search current folder by default
 ###############################################################################
 # Global / Quality of life
