@@ -3,6 +3,7 @@
 # 🏠 dotfiles
 
 [![CI](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml/badge.svg)](https://github.com/taiyo2001/dotfiles/actions/workflows/push_ci.yml)
+[![Platform: macOS](https://img.shields.io/badge/platform-macOS-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/macos/)
 [![managed by chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-blue)](https://www.chezmoi.io/)
 [![Zsh Startup Benchmark](https://img.shields.io/badge/zsh%20benchmark-view-green)](https://taiyo2001.github.io/dotfiles/)
 
@@ -121,12 +122,15 @@ make -C ~/.local/share/chezmoi op/setup
 make -C ~/.local/share/chezmoi setup/apply
 ```
 
-以下が順に実行されます（各ステップで確認プロンプトあり）：
+`setup/apply` はまず変更されるファイルの一覧を表示し、`適用しますか？ [y/N]` に `y` で答えた場合のみ `chezmoi apply` と `lefthook install` を実行します。`chezmoi apply` 中は以下のセットアップスクリプトが走り、それぞれが個別に確認プロンプトを出します：
 
-- Homebrew パッケージ（Brewfile）のインストール
-- macOS システム設定の変更
-- `lefthook install` による Git フックのセットアップ
-- tpm（Tmux Plugin Manager）および tmux プラグインのインストール
+- Homebrew パッケージ（Brewfile）のインストール（`run_after_`：毎回確認）
+- macOS システム設定の変更（`run_after_`：毎回確認）
+- Homebrew 自動アップデート用 LaunchAgent の登録（`run_after_`：毎回確認）
+- tpm（Tmux Plugin Manager）および tmux プラグインのインストール（`run_onchange_`：`.tmux.conf` 変更時）
+- aerospace-swipe のビルド / インストール（`run_onchange_`：rev 変更時）
+
+> 変更対象のファイル一覧だけ確認したい場合は `make -C ~/.local/share/chezmoi setup/diff-files` を実行します。
 
 ### アプリ設定のインポート
 

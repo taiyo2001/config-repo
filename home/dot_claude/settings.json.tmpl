@@ -1,12 +1,11 @@
 {
-  "forceLoginMethod": "claudeai",
-  "forceLoginOrgUUID": "{{ onepasswordRead "op://Private/dotfiles/claude code org_uuid" }}",
-  "language": "japanese",
   "permissions": {
     "allow": [
       "Fetch(https://*)",
-
-      "Bash(ls)",
+      "Read(**/.env.example)",
+      "Read(**/.env.sample)",
+      "Read(**/.env.template)",
+      "Read(**/.env.dist)",
       "Bash(ls *)",
       "Bash(pwd)",
       "Bash(cat *)",
@@ -44,12 +43,23 @@
       "Bash(sed -n *)",
       "Bash(jq *)",
       "Bash(yq *)",
-      "Bash(date)",
       "Bash(date *)",
       "Bash(env)",
       "Bash(history)",
       "Bash(uname *)",
-
+      "Bash(cd {{ .chezmoi.homeDir }}/workspace/*)",
+      "Bash(xargs *)",
+      "Bash(column *)",
+      "Bash(paste *)",
+      "Bash(comm *)",
+      "Bash(base64 *)",
+      "Bash(md5 *)",
+      "Bash(md5sum *)",
+      "Bash(shasum *)",
+      "Bash(sha256sum *)",
+      "Bash(hexdump *)",
+      "Bash(xxd *)",
+      "Bash(od *)",
       "Bash(gcloud * list*)",
       "Bash(gcloud * describe*)",
       "Bash(gcloud * get-iam-policy*)",
@@ -63,7 +73,6 @@
       "Bash(gcloud version)",
       "Bash(gcloud info)",
       "Bash(gcloud help*)",
-
       "Bash(gh issue view*)",
       "Bash(gh issue list*)",
       "Bash(gh issue status*)",
@@ -73,7 +82,18 @@
       "Bash(gh pr diff*)",
       "Bash(gh pr checks*)",
       "Bash(gh search *)",
-
+      "Bash(gh run list*)",
+      "Bash(gh run view*)",
+      "Bash(gh run watch*)",
+      "Bash(gh workflow list*)",
+      "Bash(gh workflow view*)",
+      "Bash(gh repo list*)",
+      "Bash(gh repo view*)",
+      "Bash(gh release list*)",
+      "Bash(gh release view*)",
+      "Bash(gh auth status)",
+      "Bash(gh --version)",
+      "Bash(gh version)",
       "Bash(git status*)",
       "Bash(git -C * status*)",
       "Bash(git log*)",
@@ -98,6 +118,8 @@
       "Bash(git -C * remote -v)",
       "Bash(git stash list*)",
       "Bash(git -C * stash list*)",
+      "Bash(git stash show*)",
+      "Bash(git -C * stash show*)",
       "Bash(git config --get *)",
       "Bash(git config --list)",
       "Bash(git config -l)",
@@ -111,19 +133,10 @@
       "mcp__claude_ai_Google_Calendar__list_events",
       "mcp__claude_ai_Google_Calendar__suggest_time"
     ],
-    "ask": [
-      "Bash(git push)",
-      "Bash(git push *)"
-    ],
-    "additionalDirectories": [
-      "{{ .chezmoi.homeDir }}/workspace/tmp",
-      "{{ .chezmoi.homeDir }}/workspace/worktrees"
-    ],
     "deny": [
       "Read(**/.env)",
       "Read(**/.env.*)",
       "Read(**/.envrc)",
-
       "Read(**/.ssh/**)",
       "Read(**/.gnupg/**)",
       "Read(**/id_rsa)",
@@ -134,12 +147,10 @@
       "Read(**/id_ecdsa.*)",
       "Read(**/id_ed25519)",
       "Read(**/id_ed25519.*)",
-
       "Read(**/*.pem)",
       "Read(**/*.key)",
       "Read(**/*.p12)",
       "Read(**/*.pfx)",
-
       "Read(**/.aws/credentials)",
       "Read(**/.aws/config)",
       "Read(**/.config/gcloud/**)",
@@ -147,16 +158,13 @@
       "Read(**/.kube/config)",
       "Read(**/service-account*.json)",
       "Read(**/credentials*.json)",
-
       "Read(**/.netrc)",
       "Read(**/.npmrc)",
       "Read(**/.pypirc)",
       "Read(**/.gem/credentials)",
       "Read(**/.cargo/credentials*)",
-
       "Read(**/.claude/.credentials.json)",
       "Read(**/.anthropic/**)",
-
       "Bash(cat .env*)",
       "Bash(cat .envrc*)",
       "Bash(cat *.env)",
@@ -175,12 +183,33 @@
       "Bash(more .envrc*)",
       "Bash(grep * .env*)",
       "Bash(grep * .envrc*)",
-
       "Bash(gcloud auth print-access-token*)",
       "Bash(gcloud auth print-identity-token*)",
       "Bash(gcloud auth application-default print-access-token*)",
       "Bash(gcloud secrets versions access*)",
-      "Bash(gcloud iam service-accounts keys create*)"
+      "Bash(gcloud iam service-accounts keys create*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git push * -f*)",
+      "Bash(git -C * push --force*)",
+      "Bash(git -C * push -f*)",
+      "Bash(git -C * push * --force*)",
+      "Bash(git -C * push * -f*)"
+    ],
+    "ask": [
+      "Bash(git push *)"
+    ],
+    "additionalDirectories": [
+      "{{ .chezmoi.homeDir }}/workspace/tmp",
+      "{{ .chezmoi.homeDir }}/workspace/worktrees"
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash {{ .chezmoi.homeDir }}/.claude/statusline.sh"
+  },
+  "forceLoginMethod": "claudeai",
+  "forceLoginOrgUUID": "{{ onepasswordRead "op://Private/dotfiles/claude code org_uuid" }}",
+  "language": "japanese"
 }

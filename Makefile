@@ -1,6 +1,15 @@
+setup/diff-files:
+	@chezmoi diff --no-pager 2> /dev/null | grep '^diff --git' | sed -E 's|^diff --git a/(.*) b/.*|\1|' || true
+
 setup/apply:
-	chezmoi apply
-	lefthook install
+	@echo "以下のファイルに変更が適用されます:"
+	@$(MAKE) -s setup/diff-files | sed 's|^|  |'
+	@printf "適用しますか？ [y/N]: "; read -r confirm; \
+	if [ "$$confirm" != "y" ] && [ "$$confirm" != "Y" ]; then \
+		echo "適用をキャンセルしました。"; \
+	else \
+		chezmoi apply && lefthook install; \
+	fi
 
 tf/init:
 	cd terraform && op run --env-file=.env.tpl -- terraform init

@@ -22,7 +22,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true        # show hidde
 defaults write com.apple.finder ShowPathbar -bool true              # show path bar
 defaults write com.apple.finder ShowStatusBar -bool true            # show status bar
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv" # default list view
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true  # full path in title bar
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool false # show folder name only in title bar
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" # search current folder by default
 ###############################################################################
 # Global / Quality of life
@@ -32,13 +32,14 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show all file 
 ###############################################################################
 # Dock
 ###############################################################################
-defaults write com.apple.dock autohide -bool false     # don't auto-hide
-defaults write com.apple.dock show-recents -bool false # hide recent apps section
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 1000000
+defaults write com.apple.dock show-recents -bool false
 
 ###############################################################################
 # Mission Control / Displays
 ###############################################################################
-defaults write com.apple.spaces spans-displays -bool true
+defaults write com.apple.spaces spans-displays -bool false
 
 ###############################################################################
 # Screenshots
